@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('post', PostController::class);
+Route::get('/post/all/data', [PostController::class, "all"]);
 Route::post('icon/post', [IconController::class, "store"]);
 Route::post('post/upload/image', [PostController::class, "upload_tinymce"]);
 Route::post('post/delete/image', [PostController::class, "unset_upload"]);
@@ -40,6 +41,7 @@ Route::put('services/unset/{id}', [ServiceController::class, "unset_pinned"]);
 Route::put('services/pinned/{id}/{type}', [ServiceController::class, "pinned"]);
 
 Route::resource('benefits', BenefitController::class);  
+Route::get('benefits/all/data', [BenefitController::class, "all"]);
 Route::put('benefits/unset/{id}', [BenefitController::class, "unset_pinned"]);
 Route::put('benefits/pinned/{id}/{type}', [BenefitController::class, "pinned"]);
 

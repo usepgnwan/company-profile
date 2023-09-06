@@ -5793,6 +5793,7 @@ var token = document.head.querySelector("[name=csrf-token]").content;
       formData.append('title', this.jsonData.title);
       formData.append('body', this.jsonData.body);
       formData.append('image', this.jsonData.image);
+      formData.append('_method', 'POST');
       formData.append("_token", token);
       var stat = 'error',
         msg = 'Failed add benefits';

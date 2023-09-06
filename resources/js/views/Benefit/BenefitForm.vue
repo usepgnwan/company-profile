@@ -168,6 +168,7 @@ export default {
       formData.append('title', this.jsonData.title);
       formData.append('body', this.jsonData.body);
       formData.append('image', this.jsonData.image);
+      formData.append('_method', 'POST');
       formData.append("_token", token);
         let stat = 'error',
             msg = 'Failed add benefits';

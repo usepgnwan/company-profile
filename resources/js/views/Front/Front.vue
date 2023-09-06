@@ -10,11 +10,14 @@
           <nav id="navbar" class="navbar">
             <ul>
               <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-              <li><a class="nav-link scrollto" href="#about">About</a></li>
               <li><a class="nav-link scrollto" href="#services">Services</a></li>
-              <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
-              <li><a class="nav-link scrollto" href="#team">Team</a></li>
-              <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+              <li><a class="nav-link scrollto" href="#about">About</a></li>
+              <li><a class="nav-link scrollto" href="#benefit">Benefit</a></li>
+              <li><a class="nav-link scrollto" href="#projects">Portfolio</a></li>
+              <li><a class="nav-link scrollto" href="#price_list">Price</a></li>
+              <li><a class="nav-link scrollto" href="#blog">Blog</a></li>
+              <li><a class="nav-link scrollto" href="#faq">Faq</a></li>
+              <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="#">Drop Down 1</a></li>
                   <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -30,8 +33,8 @@
                   <li><a href="#">Drop Down 3</a></li>
                   <li><a href="#">Drop Down 4</a></li>
                 </ul>
-              </li>
-              <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+              </li> -->
+              <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
               <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -60,7 +63,7 @@
     <!-- End Hero -->
       <main id="main">
           <!-- ======= About Us Section ======= -->
-            <section id="service" class="service">
+            <section id="services" class="services">
               <div class="container" data-aos="fade-up"> 
                 <div class="section-title">
                   <h2>Our Service</h2>
@@ -68,8 +71,8 @@
                 </div>
                 <div class="content">
                     <div class="row mt-5 mb-5">
-                      <div class="pt-3" :class="services.data.length >= 3 ? 'col-md-4' :'col-md-6'"  data-aos="fade-right" data-aos-delay="300" v-for="v in services.data" :key="v.id">
-                          <div class="card elementskit-info-box-icon" :class="v.pinned == 1 ? 'active-box' :''"> 
+                      <div class="pt-3" :class="services.data.length >= 3 ? 'col-md-4' :'col-md-6'"  data-aos="fade-right"  v-for="(v,k) in services.data" :key="v.id" :data-aos-delay="100 * (k+1)">
+                          <div class="card elementskit-info-box-icon" :class="v.pinned == 1 ? 'active-box' :''" > 
                               <div class="card-body text-center">
                                   <div class="icons">
                                       <i :class="v.image" style="font-size: 75px !important;"></i>
@@ -82,19 +85,6 @@
 
                           </div>
                       </div>
-                      <!-- <div class="col-md-6 pt-3"  data-aos="fade-left" data-aos-delay="400">
-                          <div class="card  elementskit-info-box-icon active-box">
-                              <div class="card-body text-center">
-                                  <div class="icons">
-                                      <i class="bi bi-gem" style="font-size: 75px !important;"></i>
-                                  </div> 
-                                  <div class="text-center pt-2">
-                                    <h2>Lorem ipsum dolor sit amet</h2>
-                                    <p>consectetur adipisicing elit. Incidunt adipisci architecto repellendus molestias quasi, ipsam, pariatur, minima obcaecati a sed repudiandae tenetur rerum. Aspernatur maxime ipsum dolore odit fugiat provident.</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div> -->
                     </div>
                 </div> 
               </div>
@@ -126,54 +116,15 @@
                   <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradise</p>
                 </div>
                 <div class="row"> 
-                  <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                  <div class="col-md-6" data-aos="fade-up" v-for="(v,k) in benefits.data" :key="v.id" :data-aos-delay="300 * (k+1)">
                       <div class="d-flex">
                           <div class="col-3">
-                              <div class="" style="border-radius: 50%; color: rgb(255, 255, 255); -webkit-text-stroke: 2px rgb(125, 174, 228); width: 100px; height: 100px; line-height: 100px;  text-align: center;margin-left:40px"><i class="bi bi-stack" style="font-size: 50px !important; "></i></div>
+                              <div class="icon-benefit" style="border-radius: 50%; color: rgb(255, 255, 255); -webkit-text-stroke: 2px rgb(125, 174, 228); width: 100px; height: 100px; line-height: 100px;  text-align: center;margin-left:40px"><i :class="v.image" style="font-size: 50px !important; "></i></div>
                           </div>
                           <div class="col-9">
-                              <h2>Lorem, ipsum dolor sit </h2>
+                              <h2>{{ v.title }}</h2>
                               <p>
-                                amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.
-                              </p>
-                          </div>
-                      </div>
-                  </div> 
-                  <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                      <div class="d-flex">
-                          <div class="col-3">
-                              <div class="" style="border-radius: 50%; color: rgb(255, 255, 255); -webkit-text-stroke: 2px rgb(125, 174, 228); width: 100px; height: 100px; line-height: 100px;  text-align: center;margin-left:40px"><i class="bi bi-stack" style="font-size: 50px !important; "></i></div>
-                          </div>
-                          <div class="col-9">
-                              <h2>Lorem, ipsum dolor sit </h2>
-                              <p>
-                                amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.
-                              </p>
-                          </div>
-                      </div>
-                  </div> 
-                  <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                      <div class="d-flex">
-                          <div class="col-3">
-                              <div class="" style="border-radius: 50%; color: rgb(255, 255, 255); -webkit-text-stroke: 2px rgb(125, 174, 228); width: 100px; height: 100px; line-height: 100px;  text-align: center;margin-left:40px"><i class="bi bi-stack" style="font-size: 50px !important; "></i></div>
-                          </div>
-                          <div class="col-9">
-                              <h2>Lorem, ipsum dolor sit </h2>
-                              <p>
-                                amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.
-                              </p>
-                          </div>
-                      </div>
-                  </div> 
-                  <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
-                      <div class="d-flex">
-                          <div class="col-3">
-                              <div class="" style="border-radius: 50%; color: rgb(255, 255, 255); -webkit-text-stroke: 2px rgb(125, 174, 228); width: 100px; height: 100px; line-height: 100px;  text-align: center;margin-left:40px"><i class="bi bi-stack" style="font-size: 50px !important; "></i></div>
-                          </div>
-                          <div class="col-9">
-                              <h2>Lorem, ipsum dolor sit </h2>
-                              <p>
-                                amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.
+                                {{ v.body }}
                               </p>
                           </div>
                       </div>
@@ -233,6 +184,26 @@
                   </div>
               </div>
             </section> 
+            <!-- section project -->
+            <section id="projects" class="projects">
+              <div class="container">
+                <div data-aos="fade-up" data-aos-delay="200" class="section-title aos-init aos-animate"><h2>Our <span class="text-primary">Project</span></h2> <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradise</p></div>
+                 <div class="d-flex text-center">
+                  <div data-aos="fade-up" data-aos-delay="200" class="col-4">
+                    <h1 class="text-primary">+ <span data-purecounter-start="0" data-purecounter-end="35" data-purecounter-duration="4" class="purecounter"></span> </h1>
+                    <p>WorlWide CLient</p>
+                  </div>
+                  <div data-aos="fade-up" data-aos-delay="200" class="col-4">
+                    <h1 class="text-primary">+ <span data-purecounter-start="0" data-purecounter-end="350" data-purecounter-duration="4" class="purecounter"></span> </h1>
+                    <p>Team Member</p>
+                  </div>
+                  <div data-aos="fade-up" data-aos-delay="200" class="col-4">
+                    <h1 class="text-primary">+ <span data-purecounter-start="0" data-purecounter-end="30" data-purecounter-duration="4" class="purecounter"></span> </h1>
+                    <p>Adversting Spend</p>
+                  </div>
+                 </div>
+              </div>
+            </section>
             <!-- ======= Testimonials Section ======= -->
             <section id="testimonials" class="testimonials">
               <div class="container" data-aos="zoom-in">
@@ -258,21 +229,21 @@
             </section><!-- End Testimonials Section -->
 
             <!-- ======= Clients Section ======= -->
-                <!-- ======= Clients Section ======= -->
-                  <section id="clients" class="clients">
-                    <div class="container" data-aos="zoom-in"> 
-                      <div class="clients-slider swiper">
-                        <div class="swiper-wrapper align-items-center">
-                          <div class="swiper-slide" v-for="v in client.data" :key="v.id"><img  :src="v.image" class="img-fluid" alt=""></div>
-                        </div>
-                        <!-- <div class="swiper-pagination"></div> -->
-                      </div>
-
+            <!-- ======= Clients Section ======= -->
+              <section id="clients" class="clients">
+                <div class="container" data-aos="zoom-in"> 
+                  <div class="clients-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                      <div class="swiper-slide" v-for="v in client.data" :key="v.id"><img  :src="v.image" class="img-fluid" alt=""></div>
                     </div>
-                  </section><!-- End Clients Section -->
+                    <!-- <div class="swiper-pagination"></div> -->
+                  </div>
+
+                </div>
+              </section><!-- End Clients Section -->
  
             <!-- section TEAMS -->
-            <section class="price_list" id="price_list">
+            <section class="team d-none" id="team">
               <div class="container mt-3"> 
                   <div class="section-title" data-aos="fade-up" data-aos-delay="200">
                     <h2>Our Teams</h2>
@@ -327,8 +298,35 @@
                   </div>
               </div>
             </section> 
+            <!-- section BLOGS -->
+            <section class="blog" id="blog">
+              <div class="container mt-3"> 
+                  <div class="section-title" data-aos="fade-up" data-aos-delay="200">
+                    <h2>Our Blog</h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradise</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4" data-aos="fade-left"  v-for="(v,k) in posts.data" :key="v.id" :data-aos-delay="300 * (k+1)"> 
+                      <div class="content_blog pt-2"> 
+                          <a href=""> 
+                            <div class="content_blog-overlay fadeIn-bottom"></div>
+                            <img class="content_card-image" :src="v.image" alt="">
+                            <div class="content_blog-details">
+                              <h3 class="content_card-title">{{ v.title }} </h3>
+                              <p v-html="v.body"> </p>
+                            </div> 
+                          </a>
+                      </div> 
+                    </div>  
+                    <div class="d-flex justify-content-end pt-2 px-3 text-white" :class="posts.count >= 4 ? '' : 'd-none'">
+                      <a href="" class="btn btn-sm btn-warning text-white">More &nbsp; <span class="bi bi-arrow-right"></span></a>
+                    </div>
+                  </div>
+
+              </div>
+            </section> 
             <!-- ======= Why Us Section ======= -->
-            <section id="why-us" class="why-us section-bg">
+            <section id="faq" class="why-us section-bg">
               <div class="container-fluid" data-aos="fade-up"> 
                 <div class="row"> 
                   <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
@@ -355,15 +353,20 @@
                   </div>
 
                   <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("images/hero-img.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
-                </div>
-
+                </div> 
               </div>
             </section><!-- End Why Us Section -->
-            
+            <!-- whatsapp -->
+            <section id="whatsapp">
+              <i class="bx bxl-whatsapp"></i>
+              <a href="">
+                <span>Whatsapp Kami</span>
+              </a>
+            </section>
       </main>
       
   <!-- ======= Footer ======= -->
-  <footer id="footer-front">  
+    <footer id="footer-front">  
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -393,11 +396,7 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+              <li v-for="v  in services.data" :key="v.id"><i class="bx bx-chevron-right"></i> <a href="#service">{{ v.title }}</a></li> 
             </ul>
           </div>
 
@@ -405,6 +404,7 @@
             <h4>Our Social Networks</h4>
             <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
             <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-tiktok"></i></a>
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
               <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
@@ -428,6 +428,8 @@
             client : [],
             faq : [],
             services : [],
+            benefits : [],
+            posts : [],
           }
         },
         methods: {
@@ -511,24 +513,22 @@
           .catch ((err) => {
               console.log(err); 
           });
-          this.$axios.get('/api/faq/all/data')
-          .then((response) => {
-              this.faq = response.data;   
-          })
-          .catch ((err) => {
-              console.log(err); 
-          });
-          this.$axios.get('/api/services/all/data')
-          .then((response) => {
-              this.services = response.data;   
-          })
-          .catch ((err) => {
-              console.log(err); 
-          });
+
+          this.$axios.get('/api/faq/all/data').then((response) => { this.faq = response.data; }).catch ((err) => {console.log(err);});
+          this.$axios.get('/api/services/all/data').then((response) => {this.services = response.data;}).catch ((err) => {console.log(err)});
+          this.$axios.get('/api/benefits/all/data').then((response) => {this.benefits = response.data;}).catch ((err) => {console.log(err)});
+          this.$axios.get('/api/post/all/data').then((response) => {this.posts = response.data;}).catch ((err) => {console.log(err)});
           // GETDATA END
           const glightbox = GLightbox({
             selector: '.glightbox'
           });
+           /**
+           * Mobile nav active
+           */ 
+          this.$onEvent('click', 'li > .nav-link', function(e) { 
+              $this.$selectEvent('.nav-link',true).forEach(e => e.classList.remove("active"));
+              this.classList.add("active");
+          },true);
            /**
            * Mobile nav toggle
            */ 
@@ -565,8 +565,11 @@
             $this.$onscrollEvent(document, headerScrolled)
           }
 
-        
-         
+          /**
+           * Initiate Pure Counter 
+           */
+          new PureCounter();
+
         }
     };
 </script>

@@ -20,7 +20,7 @@
             <div class="col-lg-12">
     
               <div class="card">
-                <div class="card-body mt-4 d-tbale">
+                <div class="card-body mt-4 d-tbale table-responsive">
     
                   <app-datatable 
                       :items="items" 

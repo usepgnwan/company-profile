@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <BreadCumbs :breadcumbs="this.breadcumbs" />
     <div class="row">
       <div class="col-lg-12">

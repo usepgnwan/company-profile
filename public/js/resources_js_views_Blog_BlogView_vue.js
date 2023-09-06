@@ -29295,7 +29295,7 @@ var render = function () {
             _c("div", { staticClass: "card" }, [
               _c(
                 "div",
-                { staticClass: "card-body mt-4 d-tbale" },
+                { staticClass: "card-body mt-4 d-tbale table-responsive" },
                 [
                   _c("app-datatable", {
                     attrs: {

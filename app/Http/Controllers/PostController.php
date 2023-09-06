@@ -216,4 +216,14 @@ class PostController extends Controller
         $check->fill($data)->save(); 
         return response()->json(['status' => true, 'msg' => 'Berhasil pinned/highlight'], Response::HTTP_OK);
     }
+    public function all(){
+        $all =  $data = $this->post->skip(0)->take(4)->orderby('pinned','desc')->orderby('highlight','desc')->get();
+        $collect = array_map( function($v){ 
+             $v['body'] = substr(strip_tags($v['body']),0,150) . (strlen(strip_tags($v['body'])) >= 150 ? '...':'');
+             return $v;
+        }, $all->toArray()); 
+ 
+        $collect = collect($collect);
+        return response()->json(['status' => true, 'msg' => 'all data', 'data' =>  $collect->skip(0)->take(3), 'count'=>$collect->count()], Response::HTTP_OK);
+    }
 }

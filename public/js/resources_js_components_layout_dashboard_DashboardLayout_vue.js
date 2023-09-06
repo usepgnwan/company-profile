@@ -12325,7 +12325,7 @@ var staticRenderFns = [
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "search-bar" }, [
+        _c("div", { staticClass: "search-bar d-none" }, [
           _c(
             "form",
             {
@@ -12477,7 +12477,7 @@ var staticRenderFns = [
               ),
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-item dropdown" }, [
+            _c("li", { staticClass: "nav-item dropdown d-none" }, [
               _c(
                 "a",
                 {

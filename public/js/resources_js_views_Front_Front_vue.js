@@ -440,7 +440,9 @@ __webpack_require__.r(__webpack_exports__);
       testimoni: [],
       client: [],
       faq: [],
-      services: []
+      services: [],
+      benefits: [],
+      posts: []
     };
   },
   methods: {
@@ -530,10 +532,29 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (err) {
       console.log(err);
     });
+    this.$axios.get('/api/benefits/all/data').then(function (response) {
+      _this.benefits = response.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
+    this.$axios.get('/api/post/all/data').then(function (response) {
+      _this.posts = response.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
     // GETDATA END
     var glightbox = GLightbox({
       selector: '.glightbox'
     });
+    /**
+    * Mobile nav active
+    */
+    this.$onEvent('click', 'li > .nav-link', function (e) {
+      $this.$selectEvent('.nav-link', true).forEach(function (e) {
+        return e.classList.remove("active");
+      });
+      this.classList.add("active");
+    }, true);
     /**
     * Mobile nav toggle
     */
@@ -569,6 +590,11 @@ __webpack_require__.r(__webpack_exports__);
       window.addEventListener('load', headerScrolled);
       $this.$onscrollEvent(document, headerScrolled);
     }
+
+    /**
+     * Initiate Pure Counter 
+     */
+    new PureCounter();
   }
 });
 
@@ -655,7 +681,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/**\r\n* Template Name: Arsha\r\n* Updated: Jul 05 2023 with Bootstrap v5.3.0\r\n* Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/\r\n* Author: BootstrapMade.com\r\n* License: https://bootstrapmade.com/license/\r\n*/\r\n\r\n/*--------------------------------------------------------------\r\n# General\r\n--------------------------------------------------------------*/\r\nbody {\r\n    font-family: \"Open Sans\", sans-serif;\r\n    color: #444444;\r\n  }\r\n  \r\n  a {\r\n    color: #47b2e4;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  a:hover {\r\n    color: #73c5eb;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  h1,\r\n  h2,\r\n  h3,\r\n  h4,\r\n  h5,\r\n  h6 {\r\n    font-family: \"Jost\", sans-serif;\r\n  }\r\n  p{\r\n    text-align: left !important;\r\n  }\r\n  /*--------------------------------------------------------------\r\n  # Preloader\r\n  --------------------------------------------------------------*/\r\n  #preloader {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    z-index: 9999;\r\n    overflow: hidden;\r\n    background: #37517e;\r\n  }\r\n  \r\n  #preloader:before {\r\n    content: \"\";\r\n    position: fixed;\r\n    top: calc(50% - 30px);\r\n    left: calc(50% - 30px);\r\n    border: 6px solid #37517e;\r\n    border-top-color: #fff;\r\n    border-bottom-color: #fff;\r\n    border-radius: 50%;\r\n    width: 60px;\r\n    height: 60px;\r\n    animation: animate-preloader 1s linear infinite;\r\n  }\r\n  \r\n  @keyframes animate-preloader {\r\n    0% {\r\n      transform: rotate(0deg);\r\n    }\r\n  \r\n    100% {\r\n      transform: rotate(360deg);\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Back to top button\r\n  --------------------------------------------------------------*/\r\n  .back-to-top {\r\n    position: fixed;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    right: 15px;\r\n    bottom: 15px;\r\n    z-index: 996;\r\n    background: #47b2e4;\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 50px;\r\n    transition: all 0.4s;\r\n  }\r\n  \r\n  .back-to-top i {\r\n    font-size: 24px;\r\n    color: #fff;\r\n    line-height: 0;\r\n  }\r\n  \r\n  .back-to-top:hover {\r\n    background: #6bc1e9;\r\n    color: #fff;\r\n  }\r\n  \r\n  .back-to-top.active {\r\n    visibility: visible;\r\n    opacity: 1;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Header\r\n  --------------------------------------------------------------*/\r\n  #header {\r\n    transition: all 0.5s;\r\n    z-index: 997;\r\n    padding: 15px 0;\r\n  }\r\n  \r\n  #header.header-scrolled,\r\n  #header.header-inner-pages {\r\n    background: #4256c9;\r\n  }\r\n  \r\n  #header .logo {\r\n    font-size: 30px;\r\n    margin: 0;\r\n    padding: 0;\r\n    line-height: 1;\r\n    font-weight: 500;\r\n    letter-spacing: 2px;\r\n    text-transform: uppercase;\r\n  }\r\n  \r\n  #header .logo a {\r\n    color: #fff;\r\n  }\r\n  \r\n  #header .logo img {\r\n    max-height: 40px;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Navigation Menu\r\n  --------------------------------------------------------------*/\r\n  /**\r\n  * Desktop Navigation \r\n  */\r\n  .navbar {\r\n    padding: 0;\r\n  }\r\n  \r\n  .navbar ul {\r\n    margin: 0;\r\n    padding: 0;\r\n    display: flex;\r\n    list-style: none;\r\n    align-items: center;\r\n  }\r\n  \r\n  .navbar li {\r\n    position: relative;\r\n  }\r\n  \r\n  .navbar a,\r\n  .navbar a:focus {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    padding: 10px 0 10px 30px;\r\n    font-size: 15px;\r\n    font-weight: 500;\r\n    color: #fff;\r\n    white-space: nowrap;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .navbar a i,\r\n  .navbar a:focus i {\r\n    font-size: 12px;\r\n    line-height: 0;\r\n    margin-left: 5px;\r\n  }\r\n  \r\n  .navbar a:hover,\r\n  .navbar .active,\r\n  .navbar .active:focus,\r\n  .navbar li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar .getstarted,\r\n  .navbar .getstarted:focus {\r\n    padding: 8px 20px;\r\n    margin-left: 30px;\r\n    border-radius: 50px;\r\n    color: #fff;\r\n    font-size: 14px;\r\n    border: 2px solid #47b2e4;\r\n    font-weight: 600;\r\n  }\r\n  \r\n  .navbar .getstarted:hover,\r\n  .navbar .getstarted:focus:hover {\r\n    color: #fff;\r\n    background: #31a9e1;\r\n  }\r\n  \r\n  .navbar .dropdown ul {\r\n    display: block;\r\n    position: absolute;\r\n    left: 14px;\r\n    top: calc(100% + 30px);\r\n    margin: 0;\r\n    padding: 10px 0;\r\n    z-index: 99;\r\n    opacity: 0;\r\n    visibility: hidden;\r\n    background: #fff;\r\n    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);\r\n    transition: 0.3s;\r\n    border-radius: 4px;\r\n  }\r\n  \r\n  .navbar .dropdown ul li {\r\n    min-width: 200px;\r\n  }\r\n  \r\n  .navbar .dropdown ul a {\r\n    padding: 10px 20px;\r\n    font-size: 14px;\r\n    text-transform: none;\r\n    font-weight: 500;\r\n    color: #0c3c53;\r\n  }\r\n  \r\n  .navbar .dropdown ul a i {\r\n    font-size: 12px;\r\n  }\r\n  \r\n  .navbar .dropdown ul a:hover,\r\n  .navbar .dropdown ul .active:hover,\r\n  .navbar .dropdown ul li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar .dropdown:hover>ul {\r\n    opacity: 1;\r\n    top: 100%;\r\n    visibility: visible;\r\n  }\r\n  \r\n  .navbar .dropdown .dropdown ul {\r\n    top: 0;\r\n    left: calc(100% - 30px);\r\n    visibility: hidden;\r\n  }\r\n  \r\n  .navbar .dropdown .dropdown:hover>ul {\r\n    opacity: 1;\r\n    top: 0;\r\n    left: 100%;\r\n    visibility: visible;\r\n  }\r\n  \r\n  @media (max-width: 1366px) {\r\n    .navbar .dropdown .dropdown ul {\r\n      left: -90%;\r\n    }\r\n  \r\n    .navbar .dropdown .dropdown:hover>ul {\r\n      left: -100%;\r\n    }\r\n  }\r\n  \r\n  /**\r\n  * Mobile Navigation \r\n  */\r\n  .mobile-nav-toggle {\r\n    color: #fff;\r\n    font-size: 28px;\r\n    cursor: pointer;\r\n    display: none;\r\n    line-height: 0;\r\n    transition: 0.5s;\r\n  }\r\n  \r\n  .mobile-nav-toggle.bi-x {\r\n    color: #fff;\r\n  }\r\n  \r\n  @media (max-width: 991px) {\r\n    .mobile-nav-toggle {\r\n      display: block;\r\n    }\r\n  \r\n    .navbar ul {\r\n      display: none;\r\n    }\r\n  }\r\n  \r\n  .navbar-mobile {\r\n    position: fixed;\r\n    overflow: hidden;\r\n    top: 0;\r\n    right: 0;\r\n    left: 0;\r\n    bottom: 0;\r\n    background: rgba(40, 58, 90, 0.9);\r\n    transition: 0.3s;\r\n    z-index: 999;\r\n  }\r\n  \r\n  .navbar-mobile .mobile-nav-toggle {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 15px;\r\n  }\r\n  \r\n  .navbar-mobile ul {\r\n    display: block;\r\n    position: absolute;\r\n    top: 55px;\r\n    right: 15px;\r\n    bottom: 15px;\r\n    left: 15px;\r\n    padding: 10px 0;\r\n    border-radius: 10px;\r\n    background-color: #fff;\r\n    overflow-y: auto;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .navbar-mobile a,\r\n  .navbar-mobile a:focus {\r\n    padding: 10px 20px;\r\n    font-size: 15px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .navbar-mobile a:hover,\r\n  .navbar-mobile .active,\r\n  .navbar-mobile li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar-mobile .getstarted,\r\n  .navbar-mobile .getstarted:focus {\r\n    margin: 15px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul {\r\n    position: static;\r\n    display: none;\r\n    margin: 10px 20px;\r\n    padding: 10px 0;\r\n    z-index: 99;\r\n    opacity: 1;\r\n    visibility: visible;\r\n    background: #fff;\r\n    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul li {\r\n    min-width: 200px;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul a {\r\n    padding: 10px 20px;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul a i {\r\n    font-size: 12px;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul a:hover,\r\n  .navbar-mobile .dropdown ul .active:hover,\r\n  .navbar-mobile .dropdown ul li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown>.dropdown-active {\r\n    display: block;\r\n    visibility: visible !important;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Hero Section\r\n  --------------------------------------------------------------*/\r\n  #hero {\r\n    width: 100%;\r\n    height: 80vh;\r\n    background: #5d70d6;\r\n  }\r\n  \r\n  #hero .container {\r\n    padding-top: 72px;\r\n  }\r\n  \r\n  #hero h1 {\r\n    margin: 0 0 10px 0;\r\n    font-size: 48px;\r\n    font-weight: 700;\r\n    line-height: 56px;\r\n    color: #fff;\r\n    text-align: start !important;\r\n  }\r\n  \r\n  #hero h2 {\r\n    color: rgba(255, 255, 255, 0.6);\r\n    margin-bottom: 50px;\r\n    font-size: 24px;\r\n  }\r\n  \r\n  #hero .btn-get-started {\r\n    font-family: \"Jost\", sans-serif;\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    letter-spacing: 1px;\r\n    display: inline-block;\r\n    padding: 10px 28px 11px 28px;\r\n    border-radius: 50px;\r\n    transition: 0.5s;\r\n    margin: 10px 0 0 0;\r\n    color: #fff;\r\n    background: #47b2e4;\r\n  }\r\n  \r\n  #hero .btn-get-started:hover {\r\n    background: #209dd8;\r\n  }\r\n  \r\n  #hero .btn-watch-video {\r\n    font-size: 16px;\r\n    display: flex;\r\n    align-items: center;\r\n    transition: 0.5s;\r\n    margin: 10px 0 0 25px;\r\n    color: #fff;\r\n    line-height: 1;\r\n  }\r\n  \r\n  #hero .btn-watch-video i {\r\n    line-height: 0;\r\n    color: #fff;\r\n    font-size: 32px;\r\n    transition: 0.3s;\r\n    margin-right: 8px;\r\n  }\r\n  \r\n  #hero .btn-watch-video:hover i {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  #hero .animated {\r\n    animation: up-down 2s ease-in-out infinite alternate-reverse both;\r\n  }\r\n  \r\n  @media (max-width: 991px) {\r\n    #hero {\r\n      height: 100vh;\r\n      text-align: center;\r\n    }\r\n  \r\n    #hero .animated {\r\n      animation: none;\r\n    }\r\n  \r\n    #hero .hero-img {\r\n      text-align: center;\r\n    }\r\n  \r\n    #hero .hero-img img {\r\n      width: 50%;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 768px) {\r\n    #hero h1 {\r\n      font-size: 28px;\r\n      line-height: 36px;\r\n      text-align: center !important;\r\n    }\r\n  \r\n    #hero h2 {\r\n      font-size: 18px;\r\n      line-height: 24px;\r\n      margin-bottom: 30px;\r\n    }\r\n  \r\n    #hero .hero-img img {\r\n      width: 70%;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 575px) {\r\n    #hero .hero-img img {\r\n      width: 80%;\r\n    }\r\n  \r\n    #hero .btn-get-started {\r\n      font-size: 16px;\r\n      padding: 10px 24px 11px 24px;\r\n    }\r\n  }\r\n  \r\n  @keyframes up-down {\r\n    0% {\r\n      transform: translateY(10px);\r\n    }\r\n  \r\n    100% {\r\n      transform: translateY(-10px);\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Sections General\r\n  --------------------------------------------------------------*/\r\n  section {\r\n    padding: 45px 0;\r\n    overflow: hidden;\r\n  }\r\n  \r\n  .section-bg {\r\n    background-color: #f3f5fa;\r\n  }\r\n  .section-title2 {\r\n    text-align: left !important;\r\n    padding-bottom: 30px;\r\n  }\r\n  .section-title2 p {\r\n    text-align: left !important; \r\n  }\r\n  \r\n  .section-title2 h2 {\r\n    font-size: 32px;\r\n    font-weight: bold;\r\n    text-transform: uppercase;\r\n    margin-bottom: 20px;\r\n    padding-bottom: 20px;\r\n    position: relative;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .section-title {\r\n    text-align: center;\r\n    padding-bottom: 30px;\r\n  }\r\n  \r\n  .section-title h2 {\r\n    font-size: 32px;\r\n    font-weight: bold;\r\n    text-transform: uppercase;\r\n    margin-bottom: 20px;\r\n    padding-bottom: 20px;\r\n    position: relative;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .section-title h2::before {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: block;\r\n    width: 120px;\r\n    height: 1px;\r\n    background: #ddd;\r\n    bottom: 1px;\r\n    left: calc(50% - 60px);\r\n  }\r\n  \r\n  .section-title h2::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: block;\r\n    width: 40px;\r\n    height: 3px;\r\n    background: #47b2e4;\r\n    bottom: 0;\r\n    left: calc(50% - 20px);\r\n  }\r\n  \r\n  .section-title p {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Clients\r\n  --------------------------------------------------------------*/\r\n  .clients {\r\n    padding-top: 20px;\r\n  }\r\n  \r\n  .clients .swiper-slide img {\r\n    opacity: 0.5;\r\n    transition: 0.3s;\r\n    /* filter: grayscale(100); */\r\n  }\r\n  \r\n  .clients .swiper-slide img:hover {\r\n    filter: none;\r\n    opacity: 1;\r\n  }\r\n  \r\n  .clients .swiper-pagination {\r\n    margin-top: 20px;\r\n    position: relative;\r\n  }\r\n  \r\n  .clients .swiper-pagination .swiper-pagination-bullet {\r\n    width: 12px;\r\n    height: 12px;\r\n    background-color: #fff;\r\n    opacity: 1;\r\n    background-color: #ddd;\r\n  }\r\n  \r\n  .clients .swiper-pagination .swiper-pagination-bullet-active {\r\n    background-color: #ffc451;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # About Us\r\n  --------------------------------------------------------------*/\r\n  .about .content h3 {\r\n    font-weight: 600;\r\n    font-size: 26px;\r\n  }\r\n  \r\n  .about .content ul {\r\n    list-style: none;\r\n    padding: 0;\r\n  }\r\n  \r\n  .about .content ul li {\r\n    padding-left: 28px;\r\n    position: relative;\r\n  }\r\n  \r\n  .about .content ul li+li {\r\n    margin-top: 10px;\r\n  }\r\n  \r\n  .about .content ul i {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 2px;\r\n    font-size: 20px;\r\n    color: #47b2e4;\r\n    line-height: 1;\r\n  }\r\n  \r\n  .about .content p:last-child {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .about .content .btn-learn-more {\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-weight: 500;\r\n    font-size: 14px;\r\n    letter-spacing: 1px;\r\n    display: inline-block;\r\n    padding: 12px 32px;\r\n    border-radius: 4px;\r\n    transition: 0.3s;\r\n    line-height: 1;\r\n    color: #47b2e4;\r\n    animation-delay: 0.8s;\r\n    margin-top: 6px;\r\n    border: 2px solid #47b2e4;\r\n  }\r\n  \r\n  .about .content .btn-learn-more:hover {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Why Us\r\n  --------------------------------------------------------------*/\r\n  .why-us .content {\r\n    padding: 60px 100px 0 100px;\r\n  }\r\n  \r\n  .why-us .content h3 {\r\n    font-weight: 400;\r\n    font-size: 34px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .why-us .content h4 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    margin-top: 5px;\r\n  }\r\n  \r\n  .why-us .content p {\r\n    font-size: 15px;\r\n    color: #848484;\r\n  }\r\n  \r\n  .why-us .img {\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    background-position: center center;\r\n  }\r\n  \r\n  .why-us .accordion-list {\r\n    padding: 0 100px 60px 100px;\r\n  }\r\n  \r\n  .why-us .accordion-list ul {\r\n    padding: 0;\r\n    list-style: none;\r\n  }\r\n  \r\n  .why-us .accordion-list li+li {\r\n    margin-top: 15px;\r\n  }\r\n  \r\n  .why-us .accordion-list li {\r\n    padding: 20px;\r\n    background: #fff;\r\n    border-radius: 4px;\r\n  }\r\n  \r\n  .why-us .accordion-list a {\r\n    display: block;\r\n    position: relative;\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    font-weight: 500;\r\n    padding-right: 30px;\r\n    outline: none;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .why-us .accordion-list span {\r\n    color: #47b2e4;\r\n    font-weight: 600;\r\n    font-size: 18px;\r\n    padding-right: 10px;\r\n  }\r\n  \r\n  .why-us .accordion-list i {\r\n    font-size: 24px;\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n  }\r\n  \r\n  .why-us .accordion-list p {\r\n    margin-bottom: 0;\r\n    padding: 10px 0 0 0;\r\n  }\r\n  \r\n  .why-us .accordion-list .icon-show {\r\n    display: none;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed {\r\n    color: #343a40;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed:hover {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed .icon-show {\r\n    display: inline-block;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed .icon-close {\r\n    display: none;\r\n  }\r\n  \r\n  @media (max-width: 1024px) {\r\n  \r\n    .why-us .content,\r\n    .why-us .accordion-list {\r\n      padding-left: 0;\r\n      padding-right: 0;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 992px) {\r\n    .why-us .img {\r\n      min-height: 400px;\r\n    }\r\n  \r\n    .why-us .content {\r\n      padding-top: 30px;\r\n    }\r\n  \r\n    .why-us .accordion-list {\r\n      padding-bottom: 30px;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 575px) {\r\n    .why-us .img {\r\n      min-height: 200px;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Skills\r\n  --------------------------------------------------------------*/\r\n  .skills .content h3 {\r\n    font-weight: 700;\r\n    font-size: 32px;\r\n    color: #37517e;\r\n    font-family: \"Poppins\", sans-serif;\r\n  }\r\n  \r\n  .skills .content ul {\r\n    list-style: none;\r\n    padding: 0;\r\n  }\r\n  \r\n  .skills .content ul li {\r\n    padding-bottom: 10px;\r\n  }\r\n  \r\n  .skills .content ul i {\r\n    font-size: 20px;\r\n    padding-right: 4px;\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .skills .content p:last-child {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .skills .progress {\r\n    height: 60px;\r\n    display: block;\r\n    background: none;\r\n    border-radius: 0;\r\n  }\r\n  \r\n  .skills .progress .skill {\r\n    padding: 0;\r\n    margin: 0 0 6px 0;\r\n    text-transform: uppercase;\r\n    display: block;\r\n    font-weight: 600;\r\n    font-family: \"Poppins\", sans-serif;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .skills .progress .skill .val {\r\n    float: right;\r\n    font-style: normal;\r\n  }\r\n  \r\n  .skills .progress-bar-wrap {\r\n    background: #e8edf5;\r\n    height: 10px;\r\n  }\r\n  \r\n  .skills .progress-bar {\r\n    width: 1px;\r\n    height: 10px;\r\n    transition: 0.9s;\r\n    background-color: #4668a2;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Services\r\n  --------------------------------------------------------------*/\r\n  .services .icon-box {\r\n    box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);\r\n    padding: 50px 30px;\r\n    transition: all ease-in-out 0.4s;\r\n    background: #fff;\r\n  }\r\n  \r\n  .services .icon-box .icon {\r\n    margin-bottom: 10px;\r\n  }\r\n  \r\n  .services .icon-box .icon i {\r\n    color: #47b2e4;\r\n    font-size: 36px;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .services .icon-box h4 {\r\n    font-weight: 500;\r\n    margin-bottom: 15px;\r\n    font-size: 24px;\r\n  }\r\n  \r\n  .services .icon-box h4 a {\r\n    color: #37517e;\r\n    transition: ease-in-out 0.3s;\r\n  }\r\n  \r\n  .services .icon-box p {\r\n    line-height: 24px;\r\n    font-size: 14px;\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .services .icon-box:hover {\r\n    transform: translateY(-10px);\r\n  }\r\n  \r\n  .services .icon-box:hover h4 a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Cta\r\n  --------------------------------------------------------------*/\r\n  .cta {\r\n    background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)), url(\"/images/cta-bg.jpg\") fixed center center;\r\n    background-size: cover;\r\n    padding: 120px 0;\r\n    \r\n  } \r\n  .cta h3 {\r\n    color: #fff;\r\n    font-size: 28px;\r\n    font-weight: 700;\r\n  }\r\n  \r\n  .cta p {\r\n    color: #fff;\r\n    text-align: left !important\r\n  }\r\n  \r\n  .cta .cta-btn {\r\n    font-family: \"Jost\", sans-serif;\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    letter-spacing: 1px;\r\n    display: inline-block;\r\n    padding: 12px 40px;\r\n    border-radius: 50px;\r\n    transition: 0.5s;\r\n    margin: 10px;\r\n    border: 2px solid #fff;\r\n    color: #fff;\r\n  }\r\n  \r\n  .cta .cta-btn:hover {\r\n    background: #47b2e4;\r\n    border: 2px solid #47b2e4;\r\n  }\r\n  \r\n  @media (max-width: 1024px) {\r\n    .cta {\r\n      background-attachment: scroll;\r\n    }\r\n  }\r\n  \r\n  @media (min-width: 769px) {\r\n    .cta .cta-btn-container {\r\n      display: flex;\r\n      align-items: center;\r\n      justify-content: flex-end;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Portfolio\r\n  --------------------------------------------------------------*/\r\n  .portfolio #portfolio-flters {\r\n    list-style: none;\r\n    margin-bottom: 20px;\r\n  }\r\n  \r\n  .portfolio #portfolio-flters li {\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    margin: 10px 5px;\r\n    font-size: 15px;\r\n    font-weight: 500;\r\n    line-height: 1;\r\n    color: #444444;\r\n    transition: all 0.3s;\r\n    padding: 8px 20px;\r\n    border-radius: 50px;\r\n    font-family: \"Poppins\", sans-serif;\r\n  }\r\n  \r\n  .portfolio #portfolio-flters li:hover,\r\n  .portfolio #portfolio-flters li.filter-active {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .portfolio .portfolio-item {\r\n    margin-bottom: 30px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-img {\r\n    overflow: hidden;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-img img {\r\n    transition: all 0.6s;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info {\r\n    opacity: 0;\r\n    position: absolute;\r\n    left: 15px;\r\n    bottom: 0;\r\n    z-index: 3;\r\n    right: 15px;\r\n    transition: all 0.3s;\r\n    background: rgba(55, 81, 126, 0.8);\r\n    padding: 10px 15px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info h4 {\r\n    font-size: 18px;\r\n    color: #fff;\r\n    font-weight: 600;\r\n    color: #fff;\r\n    margin-bottom: 0px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info p {\r\n    color: #f9fcfe;\r\n    font-size: 14px;\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info .preview-link,\r\n  .portfolio .portfolio-item .portfolio-info .details-link {\r\n    position: absolute;\r\n    right: 40px;\r\n    font-size: 24px;\r\n    top: calc(50% - 18px);\r\n    color: #fff;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info .preview-link:hover,\r\n  .portfolio .portfolio-item .portfolio-info .details-link:hover {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info .details-link {\r\n    right: 10px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item:hover .portfolio-img img {\r\n    transform: scale(1.15);\r\n  }\r\n  \r\n  .portfolio .portfolio-item:hover .portfolio-info {\r\n    opacity: 1;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Portfolio Details\r\n  --------------------------------------------------------------*/\r\n  .portfolio-details {\r\n    padding-top: 40px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider img {\r\n    width: 100%;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider .swiper-pagination {\r\n    margin-top: 20px;\r\n    position: relative;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {\r\n    width: 12px;\r\n    height: 12px;\r\n    background-color: #fff;\r\n    opacity: 1;\r\n    border: 1px solid #47b2e4;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {\r\n    background-color: #47b2e4;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info {\r\n    padding: 30px;\r\n    box-shadow: 0px 0 30px rgba(55, 81, 126, 0.08);\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info h3 {\r\n    font-size: 22px;\r\n    font-weight: 700;\r\n    margin-bottom: 20px;\r\n    padding-bottom: 20px;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info ul {\r\n    list-style: none;\r\n    padding: 0;\r\n    font-size: 15px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info ul li+li {\r\n    margin-top: 10px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-description {\r\n    padding-top: 30px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-description h2 {\r\n    font-size: 26px;\r\n    font-weight: 700;\r\n    margin-bottom: 20px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-description p {\r\n    padding: 0;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Team\r\n  --------------------------------------------------------------*/\r\n  .team .member {\r\n    position: relative;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);\r\n    padding: 30px;\r\n    border-radius: 5px;\r\n    background: #fff;\r\n    transition: 0.5s;\r\n    height: 100%;\r\n  }\r\n  \r\n  .team .member .pic {\r\n    overflow: hidden;\r\n    width: 180px;\r\n    border-radius: 50%;\r\n  }\r\n  \r\n  .team .member .pic img {\r\n    transition: ease-in-out 0.3s;\r\n  }\r\n  \r\n  .team .member:hover {\r\n    transform: translateY(-10px);\r\n  }\r\n  \r\n  .team .member .member-info {\r\n    padding-left: 30px;\r\n  }\r\n  \r\n  .team .member h4 {\r\n    font-weight: 700;\r\n    margin-bottom: 5px;\r\n    font-size: 20px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .team .member span {\r\n    display: block;\r\n    font-size: 15px;\r\n    padding-bottom: 10px;\r\n    position: relative;\r\n    font-weight: 500;\r\n  }\r\n  \r\n  .team .member span::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: block;\r\n    width: 50px;\r\n    height: 1px;\r\n    background: #cbd6e9;\r\n    bottom: 0;\r\n    left: 0;\r\n  }\r\n  \r\n  .team .member p {\r\n    margin: 10px 0 0 0;\r\n    font-size: 14px;\r\n  }\r\n  \r\n  .team .member .social {\r\n    margin-top: 12px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: flex-start;\r\n  }\r\n  \r\n  .team .member .social a {\r\n    transition: ease-in-out 0.3s;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    border-radius: 50px;\r\n    width: 32px;\r\n    height: 32px;\r\n    background: #eff2f8;\r\n  }\r\n  \r\n  .team .member .social a i {\r\n    color: #37517e;\r\n    font-size: 16px;\r\n    margin: 0 2px;\r\n  }\r\n  \r\n  .team .member .social a:hover {\r\n    background: #47b2e4;\r\n  }\r\n  \r\n  .team .member .social a:hover i {\r\n    color: #fff;\r\n  }\r\n  \r\n  .team .member .social a+a {\r\n    margin-left: 8px;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Pricing\r\n  --------------------------------------------------------------*/\r\n  .pricing .row {\r\n    padding-top: 40px;\r\n  }\r\n  \r\n  .pricing .box {\r\n    padding: 60px 40px;\r\n    box-shadow: 0 3px 20px -2px rgba(20, 45, 100, 0.1);\r\n    background: #fff;\r\n    height: 100%;\r\n    border-top: 4px solid #fff;\r\n    border-radius: 5px;\r\n  }\r\n  \r\n  .pricing h3 {\r\n    font-weight: 500;\r\n    margin-bottom: 15px;\r\n    font-size: 20px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .pricing h4 {\r\n    font-size: 48px;\r\n    color: #37517e;\r\n    font-weight: 400;\r\n    font-family: \"Jost\", sans-serif;\r\n    margin-bottom: 25px;\r\n  }\r\n  \r\n  .pricing h4 sup {\r\n    font-size: 28px;\r\n  }\r\n  \r\n  .pricing h4 span {\r\n    color: #47b2e4;\r\n    font-size: 18px;\r\n    display: block;\r\n  }\r\n  \r\n  .pricing ul {\r\n    padding: 20px 0;\r\n    list-style: none;\r\n    color: #999;\r\n    text-align: left;\r\n    line-height: 20px;\r\n  }\r\n  \r\n  .pricing ul li {\r\n    padding: 10px 0 10px 30px;\r\n    position: relative;\r\n  }\r\n  \r\n  .pricing ul i {\r\n    color: #28a745;\r\n    font-size: 24px;\r\n    position: absolute;\r\n    left: 0;\r\n    top: 6px;\r\n  }\r\n  \r\n  .pricing ul .na {\r\n    color: #ccc;\r\n  }\r\n  \r\n  .pricing ul .na i {\r\n    color: #ccc;\r\n  }\r\n  \r\n  .pricing ul .na span {\r\n    text-decoration: line-through;\r\n  }\r\n  \r\n  .pricing .buy-btn {\r\n    display: inline-block;\r\n    padding: 12px 35px;\r\n    border-radius: 50px;\r\n    color: #47b2e4;\r\n    transition: none;\r\n    font-size: 16px;\r\n    font-weight: 500;\r\n    font-family: \"Jost\", sans-serif;\r\n    transition: 0.3s;\r\n    border: 1px solid #47b2e4;\r\n  }\r\n  \r\n  .pricing .buy-btn:hover {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .pricing .featured {\r\n    border-top-color: #47b2e4;\r\n  }\r\n  \r\n  .pricing .featured .buy-btn {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .pricing .featured .buy-btn:hover {\r\n    background: #23a3df;\r\n  }\r\n  \r\n  @media (max-width: 992px) {\r\n    .pricing .box {\r\n      max-width: 60%;\r\n      margin: 0 auto 30px auto;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 767px) {\r\n    .pricing .box {\r\n      max-width: 80%;\r\n      margin: 0 auto 30px auto;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 420px) {\r\n    .pricing .box {\r\n      max-width: 100%;\r\n      margin: 0 auto 30px auto;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Frequently Asked Questions\r\n  --------------------------------------------------------------*/\r\n  .faq .faq-list {\r\n    padding: 0 100px;\r\n  }\r\n  \r\n  .faq .faq-list ul {\r\n    padding: 0;\r\n    list-style: none;\r\n  }\r\n  \r\n  .faq .faq-list li+li {\r\n    margin-top: 15px;\r\n  }\r\n  \r\n  .faq .faq-list li {\r\n    padding: 20px;\r\n    background: #fff;\r\n    border-radius: 4px;\r\n    position: relative;\r\n  }\r\n  \r\n  .faq .faq-list a {\r\n    display: block;\r\n    position: relative;\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    font-weight: 500;\r\n    padding: 0 30px;\r\n    outline: none;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .faq .faq-list .icon-help {\r\n    font-size: 24px;\r\n    position: absolute;\r\n    right: 0;\r\n    left: 20px;\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .faq .faq-list .icon-show,\r\n  .faq .faq-list .icon-close {\r\n    font-size: 24px;\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n  }\r\n  \r\n  .faq .faq-list p {\r\n    margin-bottom: 0;\r\n    padding: 10px 0 0 0;\r\n  }\r\n  \r\n  .faq .faq-list .icon-show {\r\n    display: none;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed {\r\n    color: #37517e;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed:hover {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed .icon-show {\r\n    display: inline-block;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed .icon-close {\r\n    display: none;\r\n  }\r\n  \r\n  @media (max-width: 1200px) {\r\n    .faq .faq-list {\r\n      padding: 0;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Contact\r\n  --------------------------------------------------------------*/\r\n  .contact .info {\r\n    border-top: 3px solid #47b2e4;\r\n    border-bottom: 3px solid #47b2e4;\r\n    padding: 30px;\r\n    background: #fff;\r\n    width: 100%;\r\n    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.1);\r\n  }\r\n  \r\n  .contact .info i {\r\n    font-size: 20px;\r\n    color: #47b2e4;\r\n    float: left;\r\n    width: 44px;\r\n    height: 44px;\r\n    background: #e7f5fb;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-radius: 50px;\r\n    transition: all 0.3s ease-in-out;\r\n  }\r\n  \r\n  .contact .info h4 {\r\n    padding: 0 0 0 60px;\r\n    font-size: 22px;\r\n    font-weight: 600;\r\n    margin-bottom: 5px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .contact .info p {\r\n    padding: 0 0 10px 60px;\r\n    margin-bottom: 20px;\r\n    font-size: 14px;\r\n    color: #6182ba;\r\n  }\r\n  \r\n  .contact .info .email p {\r\n    padding-top: 5px;\r\n  }\r\n  \r\n  .contact .info .social-links {\r\n    padding-left: 60px;\r\n  }\r\n  \r\n  .contact .info .social-links a {\r\n    font-size: 18px;\r\n    display: inline-block;\r\n    background: #333;\r\n    color: #fff;\r\n    line-height: 1;\r\n    padding: 8px 0;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    width: 36px;\r\n    height: 36px;\r\n    transition: 0.3s;\r\n    margin-right: 10px;\r\n  }\r\n  \r\n  .contact .info .social-links a:hover {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .contact .info .email:hover i,\r\n  .contact .info .address:hover i,\r\n  .contact .info .phone:hover i {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .contact .php-email-form {\r\n    width: 100%;\r\n    border-top: 3px solid #47b2e4;\r\n    border-bottom: 3px solid #47b2e4;\r\n    padding: 30px;\r\n    background: #fff;\r\n    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);\r\n  }\r\n  \r\n  .contact .php-email-form .form-group {\r\n    padding-bottom: 8px;\r\n  }\r\n  \r\n  .contact .php-email-form .validate {\r\n    display: none;\r\n    color: red;\r\n    margin: 0 0 15px 0;\r\n    font-weight: 400;\r\n    font-size: 13px;\r\n  }\r\n  \r\n  .contact .php-email-form .error-message {\r\n    display: none;\r\n    color: #fff;\r\n    background: #ed3c0d;\r\n    text-align: left;\r\n    padding: 15px;\r\n    font-weight: 600;\r\n  }\r\n  \r\n  .contact .php-email-form .error-message br+br {\r\n    margin-top: 25px;\r\n  }\r\n  \r\n  .contact .php-email-form .sent-message {\r\n    display: none;\r\n    color: #fff;\r\n    background: #18d26e;\r\n    text-align: center;\r\n    padding: 15px;\r\n    font-weight: 600;\r\n  }\r\n  \r\n  .contact .php-email-form .loading {\r\n    display: none;\r\n    background: #fff;\r\n    text-align: center;\r\n    padding: 15px;\r\n  }\r\n  \r\n  .contact .php-email-form .loading:before {\r\n    content: \"\";\r\n    display: inline-block;\r\n    border-radius: 50%;\r\n    width: 24px;\r\n    height: 24px;\r\n    margin: 0 10px -6px 0;\r\n    border: 3px solid #18d26e;\r\n    border-top-color: #eee;\r\n    animation: animate-loading 1s linear infinite;\r\n  }\r\n  \r\n  .contact .php-email-form .form-group {\r\n    margin-bottom: 20px;\r\n  }\r\n  \r\n  .contact .php-email-form label {\r\n    padding-bottom: 8px;\r\n  }\r\n  \r\n  .contact .php-email-form input,\r\n  .contact .php-email-form textarea {\r\n    border-radius: 0;\r\n    box-shadow: none;\r\n    font-size: 14px;\r\n    border-radius: 4px;\r\n  }\r\n  \r\n  .contact .php-email-form input:focus,\r\n  .contact .php-email-form textarea:focus {\r\n    border-color: #47b2e4;\r\n  }\r\n  \r\n  .contact .php-email-form input {\r\n    height: 44px;\r\n  }\r\n  \r\n  .contact .php-email-form textarea {\r\n    padding: 10px 12px;\r\n  }\r\n  \r\n  .contact .php-email-form button[type=submit] {\r\n    background: #47b2e4;\r\n    border: 0;\r\n    padding: 12px 34px;\r\n    color: #fff;\r\n    transition: 0.4s;\r\n    border-radius: 50px;\r\n  }\r\n  \r\n  .contact .php-email-form button[type=submit]:hover {\r\n    background: #209dd8;\r\n  }\r\n  \r\n  @keyframes animate-loading {\r\n    0% {\r\n      transform: rotate(0deg);\r\n    }\r\n  \r\n    100% {\r\n      transform: rotate(360deg);\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Breadcrumbs\r\n  --------------------------------------------------------------*/\r\n  .breadcrumbs {\r\n    padding: 15px 0;\r\n    background: #f3f5fa;\r\n    min-height: 40px;\r\n    margin-top: 72px;\r\n  }\r\n  \r\n  @media (max-width: 992px) {\r\n    .breadcrumbs {\r\n      margin-top: 68px;\r\n    }\r\n  }\r\n  \r\n  .breadcrumbs h2 {\r\n    font-size: 28px;\r\n    font-weight: 600;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .breadcrumbs ol {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    list-style: none;\r\n    padding: 0 0 10px 0;\r\n    margin: 0;\r\n    font-size: 14px;\r\n  }\r\n  \r\n  .breadcrumbs ol li+li {\r\n    padding-left: 10px;\r\n  }\r\n  \r\n  .breadcrumbs ol li+li::before {\r\n    display: inline-block;\r\n    padding-right: 10px;\r\n    color: #4668a2;\r\n    content: \"/\";\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Footer\r\n  --------------------------------------------------------------*/\r\n  #footer-front {\r\n    font-size: 14px;\r\n    background: #37517e;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter {\r\n    padding: 50px 0;\r\n    background: #f3f5fa;\r\n    text-align: center;\r\n    font-size: 15px;\r\n    color: #444444;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter h4 {\r\n    font-size: 24px;\r\n    margin: 0 0 20px 0;\r\n    padding: 0;\r\n    line-height: 1;\r\n    font-weight: 600;\r\n    color: #37517e;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form {\r\n    margin-top: 30px;\r\n    background: #fff;\r\n    padding: 6px 10px;\r\n    position: relative;\r\n    border-radius: 50px;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);\r\n    text-align: left;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form input[type=email] {\r\n    border: 0;\r\n    padding: 4px 8px;\r\n    width: calc(100% - 100px);\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form input[type=submit] {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    border: 0;\r\n    background: none;\r\n    font-size: 16px;\r\n    padding: 0 20px;\r\n    background: #47b2e4;\r\n    color: #fff;\r\n    transition: 0.3s;\r\n    border-radius: 50px;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form input[type=submit]:hover {\r\n    background: #209dd8;\r\n  }\r\n  \r\n  #footer-front .footer-top {\r\n    padding: 60px 0 30px 0;\r\n    background: #fff;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-contact {\r\n    margin-bottom: 30px;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-contact h3 {\r\n    font-size: 28px;\r\n    margin: 0 0 10px 0;\r\n    padding: 2px 0 2px 0;\r\n    line-height: 1;\r\n    text-transform: uppercase;\r\n    font-weight: 600;\r\n    color: #37517e;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-contact p {\r\n    font-size: 14px;\r\n    line-height: 24px;\r\n    margin-bottom: 0;\r\n    font-family: \"Jost\", sans-serif;\r\n    color: #5e5e5e;\r\n  }\r\n  \r\n  #footer-front .footer-top h4 {\r\n    font-size: 16px;\r\n    font-weight: bold;\r\n    color: #37517e;\r\n    position: relative;\r\n    padding-bottom: 12px;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links {\r\n    margin-bottom: 30px;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul {\r\n    list-style: none;\r\n    padding: 0;\r\n    margin: 0;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul i {\r\n    padding-right: 2px;\r\n    color: #47b2e4;\r\n    font-size: 18px;\r\n    line-height: 1;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul li {\r\n    padding: 10px 0;\r\n    display: flex;\r\n    align-items: center;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul li:first-child {\r\n    padding-top: 0;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul a {\r\n    color: #777777;\r\n    transition: 0.3s;\r\n    display: inline-block;\r\n    line-height: 1;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul a:hover {\r\n    text-decoration: none;\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  #footer-front .footer-top .social-links a {\r\n    font-size: 18px;\r\n    display: inline-block;\r\n    background: #47b2e4;\r\n    color: #fff;\r\n    line-height: 1;\r\n    padding: 8px 0;\r\n    margin-right: 4px;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    width: 36px;\r\n    height: 36px;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  #footer-front .footer-top .social-links a:hover {\r\n    background: #209dd8;\r\n    color: #fff;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  #footer-front .footer-bottom {\r\n    padding-top: 30px;\r\n    padding-bottom: 30px;\r\n    color: #fff;\r\n  }\r\n  \r\n  #footer-front .copyright {\r\n    float: left;\r\n  }\r\n  \r\n  #footer-front .credits {\r\n    float: right;\r\n    font-size: 13px;\r\n  }\r\n  \r\n  #footer-front .credits a {\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  @media (max-width: 768px) {\r\n    #footer-front .footer-bottom {\r\n      padding-top: 20px;\r\n      padding-bottom: 20px;\r\n    }\r\n  \r\n    #footer-front .copyright,\r\n    #footer-front .credits {\r\n      text-align: center;\r\n      float: none;\r\n    }\r\n  \r\n    #footer-front .credits {\r\n      padding-top: 4px;\r\n    }\r\n  }\r\n\r\n  /* section benefit */\r\n#benefit {\r\n    background-color: #f3f5fa !important;\r\n}\r\n#benefit .d-flex p{\r\n    text-align: left !important;\r\n}\r\n.price_list .icon-box2  {  \r\ntransition: all ease-in-out 0.4s;\r\n}\r\n.price_list .icon-box2:hover {\r\ntransform: translateY(-10px);\r\n}\r\n\r\n\r\n  /* section faq */\r\n#faq {\r\n    background-color: #f3f5fa !important;\r\n}\r\n#faq .d-flex p{\r\n    text-align: left !important;\r\n}\r\n\r\n/* content card */\r\n.content_card {\r\n  position: relative;\r\n  width: 100%;\r\n  max-width: 400px;\r\n  margin: auto;\r\n  overflow: hidden;\r\n}\r\n\r\n.content_card .content_card-overlay {\r\n  background: rgba(0,0,0,0.7);\r\n  position: absolute;\r\n  height: 99%;\r\n  width: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  right: 0;\r\n  opacity: 0;\r\n  -webkit-transition: all 0.4s ease-in-out 0s;\r\n  -moz-transition: all 0.4s ease-in-out 0s;\r\n  transition: all 0.4s ease-in-out 0s;\r\n}\r\n\r\n.content_card:hover .content_card-overlay{\r\n  opacity: 1;\r\n}\r\n\r\n.content_card-image{\r\n  width: 100%;\r\n}\r\n\r\n.content_card-details {\r\n  position: absolute;\r\n  text-align: center;\r\n  padding-left: 1em;\r\n  padding-right: 1em;\r\n  width: 100%;\r\n  top: 50%;\r\n  left: 50%;\r\n  opacity: 0;\r\n  -webkit-transform: translate(-50%, -50%);\r\n  -moz-transform: translate(-50%, -50%);\r\n  transform: translate(-50%, -50%);\r\n  -webkit-transition: all 0.3s ease-in-out 0s;\r\n  -moz-transition: all 0.3s ease-in-out 0s;\r\n  transition: all 0.3s ease-in-out 0s;\r\n}\r\n\r\n.content_card:hover .content_card-details{\r\n  top: 50%;\r\n  left: 50%;\r\n  opacity: 1;\r\n}\r\n\r\n.content_card-details h3{\r\n  color: #fff;\r\n  font-weight: 500;\r\n  /* letter-spacing: 0.15em; */\r\n  margin-bottom: 0.5em;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.content_card-details p{\r\n  color: #fff;\r\n  font-size: 0.8em;\r\n  text-align: center !important;\r\n  line-height: 0px;\r\n}\r\n\r\n.fadeIn-bottom{\r\n  top: 80%;\r\n}\r\n\r\n.fadeIn-top{\r\n  top: 20%;\r\n}\r\n.fadeIn-bottom{\r\n  top: 80%;\r\n}\r\n\r\n.fadeIn-top{\r\n  top: 20%;\r\n}\r\n\r\n.fadeIn-left{\r\n  left: 20%;\r\n}\r\n\r\n.fadeIn-right{\r\n  left: 80%;\r\n}\r\n.content_card  .flex-container {\r\n  display: flex;\r\n  color: #fff;\r\n  flex-wrap: revert;  \r\n  justify-content: center;\r\n} \r\n.content_card  .flex-container  .flex-item {\r\n  background: transparent;\r\n  font-size: 2.5em;\r\n  margin-right: 10px;\r\n}\r\n\r\n\r\n/*--------------------------------------------------------------\r\n# Testimonials\r\n--------------------------------------------------------------*/\r\n.testimonials {\r\n  padding: 80px 0;\r\n  background: url(\"/images/cta-bg.jpg\") no-repeat;\r\n  background-position: center center;\r\n  background-size: cover;\r\n  position: relative;\r\n}\r\n\r\n.testimonials::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  background: rgba(0, 0, 0, 0.7);\r\n}\r\n\r\n.testimonials .section-header {\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.testimonials .testimonials-carousel,\r\n.testimonials .testimonials-slider {\r\n  overflow: hidden;\r\n}\r\n\r\n.testimonials .testimonial-item {\r\n  text-align: center;\r\n  color: #fff;\r\n}\r\n.testimonials p {\r\n  text-align: center !important; \r\n}\r\n\r\n.testimonials .testimonial-item .testimonial-img {\r\n  width: 100px;\r\n  border-radius: 50%;\r\n  border: 6px solid rgba(255, 255, 255, 0.15);\r\n  margin: 0 auto;\r\n}\r\n\r\n.testimonials .testimonial-item h3 {\r\n  font-size: 20px;\r\n  font-weight: bold;\r\n  margin: 10px 0 5px 0;\r\n  color: #fff;\r\n}\r\n\r\n.testimonials .testimonial-item h4 {\r\n  font-size: 14px;\r\n  color: #ddd;\r\n  margin: 0 0 15px 0;\r\n}\r\n\r\n.testimonials .testimonial-item .quote-icon-left,\r\n.testimonials .testimonial-item .quote-icon-right {\r\n  color: rgba(255, 255, 255, 0.6);\r\n  font-size: 26px;\r\n}\r\n\r\n.testimonials .testimonial-item .quote-icon-left {\r\n  display: inline-block;\r\n  left: -5px;\r\n  position: relative;\r\n}\r\n\r\n.testimonials .testimonial-item .quote-icon-right {\r\n  display: inline-block;\r\n  right: -5px;\r\n  position: relative;\r\n  top: 10px;\r\n}\r\n\r\n.testimonials .testimonial-item p {\r\n  font-style: italic;\r\n  margin: 0 auto 15px auto;\r\n  color: #eee;\r\n}\r\n\r\n.testimonials .swiper-pagination {\r\n  margin-top: 20px;\r\n  position: relative;\r\n}\r\n\r\n.testimonials .swiper-pagination .swiper-pagination-bullet {\r\n  width: 12px;\r\n  height: 12px;\r\n  background-color: rgba(255, 255, 255, 0.4);\r\n  opacity: 0.5;\r\n}\r\n\r\n.testimonials .swiper-pagination .swiper-pagination-bullet-active {\r\n  background-color: #ffc451;\r\n  opacity: 1;\r\n}\r\n\r\n@media (min-width: 1024px) {\r\n  .testimonials {\r\n    background-attachment: fixed;\r\n  }\r\n}\r\n\r\n@media (min-width: 992px) {\r\n  .testimonials .testimonial-item p {\r\n    width: 80%;\r\n  }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/**\r\n* Template Name: Arsha\r\n* Updated: Jul 05 2023 with Bootstrap v5.3.0\r\n* Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/\r\n* Author: BootstrapMade.com\r\n* License: https://bootstrapmade.com/license/\r\n*/\r\n\r\n/*--------------------------------------------------------------\r\n# General\r\n--------------------------------------------------------------*/\r\nbody {\r\n    font-family: \"Open Sans\", sans-serif;\r\n    color: #444444;\r\n  }\r\n  \r\n  a {\r\n    color: #47b2e4;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  a:hover {\r\n    color: #73c5eb;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  h1,\r\n  h2,\r\n  h3,\r\n  h4,\r\n  h5,\r\n  h6 {\r\n    font-family: \"Jost\", sans-serif;\r\n  }\r\n  p{\r\n    text-align: left !important;\r\n  }\r\n  /*--------------------------------------------------------------\r\n  # Preloader\r\n  --------------------------------------------------------------*/\r\n  #preloader {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    z-index: 9999;\r\n    overflow: hidden;\r\n    background: #37517e;\r\n  }\r\n  \r\n  #preloader:before {\r\n    content: \"\";\r\n    position: fixed;\r\n    top: calc(50% - 30px);\r\n    left: calc(50% - 30px);\r\n    border: 6px solid #37517e;\r\n    border-top-color: #fff;\r\n    border-bottom-color: #fff;\r\n    border-radius: 50%;\r\n    width: 60px;\r\n    height: 60px;\r\n    animation: animate-preloader 1s linear infinite;\r\n  }\r\n  \r\n  @keyframes animate-preloader {\r\n    0% {\r\n      transform: rotate(0deg);\r\n    }\r\n  \r\n    100% {\r\n      transform: rotate(360deg);\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Back to top button\r\n  --------------------------------------------------------------*/\r\n  .back-to-top {\r\n    position: fixed;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    right: 15px;\r\n    bottom: 15px;\r\n    z-index: 996;\r\n    background: #47b2e4;\r\n    width: 40px;\r\n    height: 40px;\r\n    border-radius: 50px;\r\n    transition: all 0.4s;\r\n  }\r\n  \r\n  .back-to-top i {\r\n    font-size: 24px;\r\n    color: #fff;\r\n    line-height: 0;\r\n  }\r\n  \r\n  .back-to-top:hover {\r\n    background: #6bc1e9;\r\n    color: #fff;\r\n  }\r\n  \r\n  .back-to-top.active {\r\n    visibility: visible;\r\n    opacity: 1;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Header\r\n  --------------------------------------------------------------*/\r\n  #header {\r\n    transition: all 0.5s;\r\n    z-index: 997;\r\n    padding: 15px 0;\r\n  }\r\n  \r\n  #header.header-scrolled,\r\n  #header.header-inner-pages {\r\n    background: #4256c9;\r\n  }\r\n  \r\n  #header .logo {\r\n    font-size: 30px;\r\n    margin: 0;\r\n    padding: 0;\r\n    line-height: 1;\r\n    font-weight: 500;\r\n    letter-spacing: 2px;\r\n    text-transform: uppercase;\r\n  }\r\n  \r\n  #header .logo a {\r\n    color: #fff;\r\n  }\r\n  \r\n  #header .logo img {\r\n    max-height: 40px;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Navigation Menu\r\n  --------------------------------------------------------------*/\r\n  /**\r\n  * Desktop Navigation \r\n  */\r\n  .navbar {\r\n    padding: 0;\r\n  }\r\n  \r\n  .navbar ul {\r\n    margin: 0;\r\n    padding: 0;\r\n    display: flex;\r\n    list-style: none;\r\n    align-items: center;\r\n  }\r\n  \r\n  .navbar li {\r\n    position: relative;\r\n  }\r\n  \r\n  .navbar a,\r\n  .navbar a:focus {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    padding: 10px 0 10px 30px;\r\n    font-size: 15px;\r\n    font-weight: 500;\r\n    color: #fff;\r\n    white-space: nowrap;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .navbar a i,\r\n  .navbar a:focus i {\r\n    font-size: 12px;\r\n    line-height: 0;\r\n    margin-left: 5px;\r\n  }\r\n  \r\n  .navbar a:hover,\r\n  .navbar .active,\r\n  .navbar .active:focus,\r\n  .navbar li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar .getstarted,\r\n  .navbar .getstarted:focus {\r\n    padding: 8px 20px;\r\n    margin-left: 30px;\r\n    border-radius: 50px;\r\n    color: #fff;\r\n    font-size: 14px;\r\n    border: 2px solid #47b2e4;\r\n    font-weight: 600;\r\n  }\r\n  \r\n  .navbar .getstarted:hover,\r\n  .navbar .getstarted:focus:hover {\r\n    color: #fff;\r\n    background: #31a9e1;\r\n  }\r\n  \r\n  .navbar .dropdown ul {\r\n    display: block;\r\n    position: absolute;\r\n    left: 14px;\r\n    top: calc(100% + 30px);\r\n    margin: 0;\r\n    padding: 10px 0;\r\n    z-index: 99;\r\n    opacity: 0;\r\n    visibility: hidden;\r\n    background: #fff;\r\n    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);\r\n    transition: 0.3s;\r\n    border-radius: 4px;\r\n  }\r\n  \r\n  .navbar .dropdown ul li {\r\n    min-width: 200px;\r\n  }\r\n  \r\n  .navbar .dropdown ul a {\r\n    padding: 10px 20px;\r\n    font-size: 14px;\r\n    text-transform: none;\r\n    font-weight: 500;\r\n    color: #0c3c53;\r\n  }\r\n  \r\n  .navbar .dropdown ul a i {\r\n    font-size: 12px;\r\n  }\r\n  \r\n  .navbar .dropdown ul a:hover,\r\n  .navbar .dropdown ul .active:hover,\r\n  .navbar .dropdown ul li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar .dropdown:hover>ul {\r\n    opacity: 1;\r\n    top: 100%;\r\n    visibility: visible;\r\n  }\r\n  \r\n  .navbar .dropdown .dropdown ul {\r\n    top: 0;\r\n    left: calc(100% - 30px);\r\n    visibility: hidden;\r\n  }\r\n  \r\n  .navbar .dropdown .dropdown:hover>ul {\r\n    opacity: 1;\r\n    top: 0;\r\n    left: 100%;\r\n    visibility: visible;\r\n  }\r\n  \r\n  @media (max-width: 1366px) {\r\n    .navbar .dropdown .dropdown ul {\r\n      left: -90%;\r\n    }\r\n  \r\n    .navbar .dropdown .dropdown:hover>ul {\r\n      left: -100%;\r\n    }\r\n  }\r\n  \r\n  /**\r\n  * Mobile Navigation \r\n  */\r\n  .mobile-nav-toggle {\r\n    color: #fff;\r\n    font-size: 28px;\r\n    cursor: pointer;\r\n    display: none;\r\n    line-height: 0;\r\n    transition: 0.5s;\r\n  }\r\n  \r\n  .mobile-nav-toggle.bi-x {\r\n    color: #fff;\r\n  }\r\n  \r\n  @media (max-width: 991px) {\r\n    .mobile-nav-toggle {\r\n      display: block;\r\n    }\r\n  \r\n    .navbar ul {\r\n      display: none;\r\n    }\r\n  }\r\n  \r\n  .navbar-mobile {\r\n    position: fixed;\r\n    overflow: hidden;\r\n    top: 0;\r\n    right: 0;\r\n    left: 0;\r\n    bottom: 0;\r\n    background: rgba(40, 58, 90, 0.9);\r\n    transition: 0.3s;\r\n    z-index: 999;\r\n  }\r\n  \r\n  .navbar-mobile .mobile-nav-toggle {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 15px;\r\n  }\r\n  \r\n  .navbar-mobile ul {\r\n    display: block;\r\n    position: absolute;\r\n    top: 55px;\r\n    right: 15px;\r\n    bottom: 15px;\r\n    left: 15px;\r\n    padding: 10px 0;\r\n    border-radius: 10px;\r\n    background-color: #fff;\r\n    overflow-y: auto;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .navbar-mobile a,\r\n  .navbar-mobile a:focus {\r\n    padding: 10px 20px;\r\n    font-size: 15px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .navbar-mobile a:hover,\r\n  .navbar-mobile .active,\r\n  .navbar-mobile li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar-mobile .getstarted,\r\n  .navbar-mobile .getstarted:focus {\r\n    margin: 15px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul {\r\n    position: static;\r\n    display: none;\r\n    margin: 10px 20px;\r\n    padding: 10px 0;\r\n    z-index: 99;\r\n    opacity: 1;\r\n    visibility: visible;\r\n    background: #fff;\r\n    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul li {\r\n    min-width: 200px;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul a {\r\n    padding: 10px 20px;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul a i {\r\n    font-size: 12px;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown ul a:hover,\r\n  .navbar-mobile .dropdown ul .active:hover,\r\n  .navbar-mobile .dropdown ul li:hover>a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .navbar-mobile .dropdown>.dropdown-active {\r\n    display: block;\r\n    visibility: visible !important;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Hero Section\r\n  --------------------------------------------------------------*/\r\n  #hero {\r\n    width: 100%;\r\n    height: 80vh;\r\n    background: #5d70d6;\r\n  }\r\n  \r\n  #hero .container {\r\n    padding-top: 72px;\r\n  }\r\n  \r\n  #hero h1 {\r\n    margin: 0 0 10px 0;\r\n    font-size: 48px;\r\n    font-weight: 700;\r\n    line-height: 56px;\r\n    color: #fff;\r\n    text-align: start !important;\r\n  }\r\n  \r\n  #hero h2 {\r\n    color: rgba(255, 255, 255, 0.6);\r\n    margin-bottom: 50px;\r\n    font-size: 24px;\r\n  }\r\n  \r\n  #hero .btn-get-started {\r\n    font-family: \"Jost\", sans-serif;\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    letter-spacing: 1px;\r\n    display: inline-block;\r\n    padding: 10px 28px 11px 28px;\r\n    border-radius: 50px;\r\n    transition: 0.5s;\r\n    margin: 10px 0 0 0;\r\n    color: #fff;\r\n    background: #47b2e4;\r\n  }\r\n  \r\n  #hero .btn-get-started:hover {\r\n    background: #209dd8;\r\n  }\r\n  \r\n  #hero .btn-watch-video {\r\n    font-size: 16px;\r\n    display: flex;\r\n    align-items: center;\r\n    transition: 0.5s;\r\n    margin: 10px 0 0 25px;\r\n    color: #fff;\r\n    line-height: 1;\r\n  }\r\n  \r\n  #hero .btn-watch-video i {\r\n    line-height: 0;\r\n    color: #fff;\r\n    font-size: 32px;\r\n    transition: 0.3s;\r\n    margin-right: 8px;\r\n  }\r\n  \r\n  #hero .btn-watch-video:hover i {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  #hero .animated {\r\n    animation: up-down 2s ease-in-out infinite alternate-reverse both;\r\n  }\r\n  \r\n  @media (max-width: 991px) {\r\n    #hero {\r\n      height: 100vh;\r\n      text-align: center;\r\n    }\r\n  \r\n    #hero .animated {\r\n      animation: none;\r\n    }\r\n  \r\n    #hero .hero-img {\r\n      text-align: center;\r\n    }\r\n  \r\n    #hero .hero-img img {\r\n      width: 50%;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 768px) {\r\n    #hero h1 {\r\n      font-size: 28px;\r\n      line-height: 36px;\r\n      text-align: center !important;\r\n    }\r\n  \r\n    #hero h2 {\r\n      font-size: 18px;\r\n      line-height: 24px;\r\n      margin-bottom: 30px;\r\n    }\r\n  \r\n    #hero .hero-img img {\r\n      width: 70%;\r\n    }\r\n    \r\n    .icon-benefit{\r\n      margin-left: 0px !important;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 575px) {\r\n    #hero .hero-img img {\r\n      width: 80%;\r\n    }\r\n  \r\n    .icon-benefit{\r\n      margin-left: 0px !important;\r\n    }\r\n    #hero .btn-get-started {\r\n      font-size: 16px;\r\n      padding: 10px 24px 11px 24px;\r\n    }\r\n  }\r\n  \r\n  @keyframes up-down {\r\n    0% {\r\n      transform: translateY(10px);\r\n    }\r\n  \r\n    100% {\r\n      transform: translateY(-10px);\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Sections General\r\n  --------------------------------------------------------------*/\r\n  section {\r\n    padding: 45px 0;\r\n    overflow: hidden;\r\n  }\r\n  \r\n  .section-bg {\r\n    background-color: #f3f5fa;\r\n  }\r\n  .section-title2 {\r\n    text-align: left !important;\r\n    padding-bottom: 30px;\r\n  }\r\n  .section-title2 p {\r\n    text-align: left !important; \r\n  }\r\n  \r\n  .section-title2 h2 {\r\n    font-size: 32px;\r\n    font-weight: bold;\r\n    text-transform: uppercase;\r\n    margin-bottom: 20px;\r\n    padding-bottom: 20px;\r\n    position: relative;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .section-title {\r\n    text-align: center;\r\n    padding-bottom: 30px;\r\n  }\r\n  \r\n  .section-title h2 {\r\n    font-size: 32px;\r\n    font-weight: bold;\r\n    text-transform: uppercase;\r\n    margin-bottom: 20px;\r\n    padding-bottom: 20px;\r\n    position: relative;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .section-title h2::before {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: block;\r\n    width: 120px;\r\n    height: 1px;\r\n    background: #ddd;\r\n    bottom: 1px;\r\n    left: calc(50% - 60px);\r\n  }\r\n  \r\n  .section-title h2::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: block;\r\n    width: 40px;\r\n    height: 3px;\r\n    background: #47b2e4;\r\n    bottom: 0;\r\n    left: calc(50% - 20px);\r\n  }\r\n  \r\n  .section-title p {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Clients\r\n  --------------------------------------------------------------*/\r\n  .clients {\r\n    padding-top: 20px;\r\n  }\r\n  \r\n  .clients .swiper-slide img {\r\n    opacity: 0.5;\r\n    transition: 0.3s;\r\n    /* filter: grayscale(100); */\r\n  }\r\n  \r\n  .clients .swiper-slide img:hover {\r\n    filter: none;\r\n    opacity: 1;\r\n  }\r\n  \r\n  .clients .swiper-pagination {\r\n    margin-top: 20px;\r\n    position: relative;\r\n  }\r\n  \r\n  .clients .swiper-pagination .swiper-pagination-bullet {\r\n    width: 12px;\r\n    height: 12px;\r\n    background-color: #fff;\r\n    opacity: 1;\r\n    background-color: #ddd;\r\n  }\r\n  \r\n  .clients .swiper-pagination .swiper-pagination-bullet-active {\r\n    background-color: #ffc451;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # About Us\r\n  --------------------------------------------------------------*/\r\n  .about .content h3 {\r\n    font-weight: 600;\r\n    font-size: 26px;\r\n  }\r\n  \r\n  .about .content ul {\r\n    list-style: none;\r\n    padding: 0;\r\n  }\r\n  \r\n  .about .content ul li {\r\n    padding-left: 28px;\r\n    position: relative;\r\n  }\r\n  \r\n  .about .content ul li+li {\r\n    margin-top: 10px;\r\n  }\r\n  \r\n  .about .content ul i {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 2px;\r\n    font-size: 20px;\r\n    color: #47b2e4;\r\n    line-height: 1;\r\n  }\r\n  \r\n  .about .content p:last-child {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .about .content .btn-learn-more {\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-weight: 500;\r\n    font-size: 14px;\r\n    letter-spacing: 1px;\r\n    display: inline-block;\r\n    padding: 12px 32px;\r\n    border-radius: 4px;\r\n    transition: 0.3s;\r\n    line-height: 1;\r\n    color: #47b2e4;\r\n    animation-delay: 0.8s;\r\n    margin-top: 6px;\r\n    border: 2px solid #47b2e4;\r\n  }\r\n  \r\n  .about .content .btn-learn-more:hover {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Why Us\r\n  --------------------------------------------------------------*/\r\n  .why-us .content {\r\n    padding: 60px 100px 0 100px;\r\n  }\r\n  \r\n  .why-us .content h3 {\r\n    font-weight: 400;\r\n    font-size: 34px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .why-us .content h4 {\r\n    font-size: 20px;\r\n    font-weight: 700;\r\n    margin-top: 5px;\r\n  }\r\n  \r\n  .why-us .content p {\r\n    font-size: 15px;\r\n    color: #848484;\r\n  }\r\n  \r\n  .why-us .img {\r\n    background-size: contain;\r\n    background-repeat: no-repeat;\r\n    background-position: center center;\r\n  }\r\n  \r\n  .why-us .accordion-list {\r\n    padding: 0 100px 60px 100px;\r\n  }\r\n  \r\n  .why-us .accordion-list ul {\r\n    padding: 0;\r\n    list-style: none;\r\n  }\r\n  \r\n  .why-us .accordion-list li+li {\r\n    margin-top: 15px;\r\n  }\r\n  \r\n  .why-us .accordion-list li {\r\n    padding: 20px;\r\n    background: #fff;\r\n    border-radius: 4px;\r\n  }\r\n  \r\n  .why-us .accordion-list a {\r\n    display: block;\r\n    position: relative;\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    font-weight: 500;\r\n    padding-right: 30px;\r\n    outline: none;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .why-us .accordion-list span {\r\n    color: #47b2e4;\r\n    font-weight: 600;\r\n    font-size: 18px;\r\n    padding-right: 10px;\r\n  }\r\n  \r\n  .why-us .accordion-list i {\r\n    font-size: 24px;\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n  }\r\n  \r\n  .why-us .accordion-list p {\r\n    margin-bottom: 0;\r\n    padding: 10px 0 0 0;\r\n  }\r\n  \r\n  .why-us .accordion-list .icon-show {\r\n    display: none;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed {\r\n    color: #343a40;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed:hover {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed .icon-show {\r\n    display: inline-block;\r\n  }\r\n  \r\n  .why-us .accordion-list a.collapsed .icon-close {\r\n    display: none;\r\n  }\r\n  \r\n  @media (max-width: 1024px) {\r\n  \r\n    .why-us .content,\r\n    .why-us .accordion-list {\r\n      padding-left: 0;\r\n      padding-right: 0;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 992px) {\r\n    .why-us .img {\r\n      min-height: 400px;\r\n    }\r\n  \r\n    .why-us .content {\r\n      padding-top: 30px;\r\n    }\r\n  \r\n    .why-us .accordion-list {\r\n      padding-bottom: 30px;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 575px) {\r\n    .why-us .img {\r\n      min-height: 200px;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Skills\r\n  --------------------------------------------------------------*/\r\n  .skills .content h3 {\r\n    font-weight: 700;\r\n    font-size: 32px;\r\n    color: #37517e;\r\n    font-family: \"Poppins\", sans-serif;\r\n  }\r\n  \r\n  .skills .content ul {\r\n    list-style: none;\r\n    padding: 0;\r\n  }\r\n  \r\n  .skills .content ul li {\r\n    padding-bottom: 10px;\r\n  }\r\n  \r\n  .skills .content ul i {\r\n    font-size: 20px;\r\n    padding-right: 4px;\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .skills .content p:last-child {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .skills .progress {\r\n    height: 60px;\r\n    display: block;\r\n    background: none;\r\n    border-radius: 0;\r\n  }\r\n  \r\n  .skills .progress .skill {\r\n    padding: 0;\r\n    margin: 0 0 6px 0;\r\n    text-transform: uppercase;\r\n    display: block;\r\n    font-weight: 600;\r\n    font-family: \"Poppins\", sans-serif;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .skills .progress .skill .val {\r\n    float: right;\r\n    font-style: normal;\r\n  }\r\n  \r\n  .skills .progress-bar-wrap {\r\n    background: #e8edf5;\r\n    height: 10px;\r\n  }\r\n  \r\n  .skills .progress-bar {\r\n    width: 1px;\r\n    height: 10px;\r\n    transition: 0.9s;\r\n    background-color: #4668a2;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Services\r\n  --------------------------------------------------------------*/\r\n  .services .icon-box {\r\n    box-shadow: 0px 0 25px 0 rgba(0, 0, 0, 0.1);\r\n    padding: 50px 30px;\r\n    transition: all ease-in-out 0.4s;\r\n    background: #fff;\r\n  }\r\n  \r\n  .services .icon-box .icon {\r\n    margin-bottom: 10px;\r\n  }\r\n  \r\n  .services .icon-box .icon i {\r\n    color: #47b2e4;\r\n    font-size: 36px;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .services .icon-box h4 {\r\n    font-weight: 500;\r\n    margin-bottom: 15px;\r\n    font-size: 24px;\r\n  }\r\n  \r\n  .services .icon-box h4 a {\r\n    color: #37517e;\r\n    transition: ease-in-out 0.3s;\r\n  }\r\n  \r\n  .services .icon-box p {\r\n    line-height: 24px;\r\n    font-size: 14px;\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .services .icon-box:hover {\r\n    transform: translateY(-10px);\r\n  }\r\n  \r\n  .services .icon-box:hover h4 a {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Cta\r\n  --------------------------------------------------------------*/\r\n  .cta {\r\n    background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)), url(\"/images/cta-bg.jpg\") fixed center center;\r\n    background-size: cover;\r\n    padding: 120px 0;\r\n    \r\n  } \r\n  .cta h3 {\r\n    color: #fff;\r\n    font-size: 28px;\r\n    font-weight: 700;\r\n  }\r\n  \r\n  .cta p {\r\n    color: #fff;\r\n    text-align: left !important\r\n  }\r\n  \r\n  .cta .cta-btn {\r\n    font-family: \"Jost\", sans-serif;\r\n    font-weight: 500;\r\n    font-size: 16px;\r\n    letter-spacing: 1px;\r\n    display: inline-block;\r\n    padding: 12px 40px;\r\n    border-radius: 50px;\r\n    transition: 0.5s;\r\n    margin: 10px;\r\n    border: 2px solid #fff;\r\n    color: #fff;\r\n  }\r\n  \r\n  .cta .cta-btn:hover {\r\n    background: #47b2e4;\r\n    border: 2px solid #47b2e4;\r\n  }\r\n  \r\n  @media (max-width: 1024px) {\r\n    .cta {\r\n      background-attachment: scroll;\r\n    }\r\n  }\r\n  \r\n  @media (min-width: 769px) {\r\n    .cta .cta-btn-container {\r\n      display: flex;\r\n      align-items: center;\r\n      justify-content: flex-end;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Portfolio\r\n  --------------------------------------------------------------*/\r\n  .portfolio #portfolio-flters {\r\n    list-style: none;\r\n    margin-bottom: 20px;\r\n  }\r\n  \r\n  .portfolio #portfolio-flters li {\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    margin: 10px 5px;\r\n    font-size: 15px;\r\n    font-weight: 500;\r\n    line-height: 1;\r\n    color: #444444;\r\n    transition: all 0.3s;\r\n    padding: 8px 20px;\r\n    border-radius: 50px;\r\n    font-family: \"Poppins\", sans-serif;\r\n  }\r\n  \r\n  .portfolio #portfolio-flters li:hover,\r\n  .portfolio #portfolio-flters li.filter-active {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .portfolio .portfolio-item {\r\n    margin-bottom: 30px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-img {\r\n    overflow: hidden;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-img img {\r\n    transition: all 0.6s;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info {\r\n    opacity: 0;\r\n    position: absolute;\r\n    left: 15px;\r\n    bottom: 0;\r\n    z-index: 3;\r\n    right: 15px;\r\n    transition: all 0.3s;\r\n    background: rgba(55, 81, 126, 0.8);\r\n    padding: 10px 15px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info h4 {\r\n    font-size: 18px;\r\n    color: #fff;\r\n    font-weight: 600;\r\n    color: #fff;\r\n    margin-bottom: 0px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info p {\r\n    color: #f9fcfe;\r\n    font-size: 14px;\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info .preview-link,\r\n  .portfolio .portfolio-item .portfolio-info .details-link {\r\n    position: absolute;\r\n    right: 40px;\r\n    font-size: 24px;\r\n    top: calc(50% - 18px);\r\n    color: #fff;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info .preview-link:hover,\r\n  .portfolio .portfolio-item .portfolio-info .details-link:hover {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .portfolio .portfolio-item .portfolio-info .details-link {\r\n    right: 10px;\r\n  }\r\n  \r\n  .portfolio .portfolio-item:hover .portfolio-img img {\r\n    transform: scale(1.15);\r\n  }\r\n  \r\n  .portfolio .portfolio-item:hover .portfolio-info {\r\n    opacity: 1;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Portfolio Details\r\n  --------------------------------------------------------------*/\r\n  .portfolio-details {\r\n    padding-top: 40px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider img {\r\n    width: 100%;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider .swiper-pagination {\r\n    margin-top: 20px;\r\n    position: relative;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {\r\n    width: 12px;\r\n    height: 12px;\r\n    background-color: #fff;\r\n    opacity: 1;\r\n    border: 1px solid #47b2e4;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {\r\n    background-color: #47b2e4;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info {\r\n    padding: 30px;\r\n    box-shadow: 0px 0 30px rgba(55, 81, 126, 0.08);\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info h3 {\r\n    font-size: 22px;\r\n    font-weight: 700;\r\n    margin-bottom: 20px;\r\n    padding-bottom: 20px;\r\n    border-bottom: 1px solid #eee;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info ul {\r\n    list-style: none;\r\n    padding: 0;\r\n    font-size: 15px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-info ul li+li {\r\n    margin-top: 10px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-description {\r\n    padding-top: 30px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-description h2 {\r\n    font-size: 26px;\r\n    font-weight: 700;\r\n    margin-bottom: 20px;\r\n  }\r\n  \r\n  .portfolio-details .portfolio-description p {\r\n    padding: 0;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Team\r\n  --------------------------------------------------------------*/\r\n  .team .member {\r\n    position: relative;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);\r\n    padding: 30px;\r\n    border-radius: 5px;\r\n    background: #fff;\r\n    transition: 0.5s;\r\n    height: 100%;\r\n  }\r\n  \r\n  .team .member .pic {\r\n    overflow: hidden;\r\n    width: 180px;\r\n    border-radius: 50%;\r\n  }\r\n  \r\n  .team .member .pic img {\r\n    transition: ease-in-out 0.3s;\r\n  }\r\n  \r\n  .team .member:hover {\r\n    transform: translateY(-10px);\r\n  }\r\n  \r\n  .team .member .member-info {\r\n    padding-left: 30px;\r\n  }\r\n  \r\n  .team .member h4 {\r\n    font-weight: 700;\r\n    margin-bottom: 5px;\r\n    font-size: 20px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .team .member span {\r\n    display: block;\r\n    font-size: 15px;\r\n    padding-bottom: 10px;\r\n    position: relative;\r\n    font-weight: 500;\r\n  }\r\n  \r\n  .team .member span::after {\r\n    content: \"\";\r\n    position: absolute;\r\n    display: block;\r\n    width: 50px;\r\n    height: 1px;\r\n    background: #cbd6e9;\r\n    bottom: 0;\r\n    left: 0;\r\n  }\r\n  \r\n  .team .member p {\r\n    margin: 10px 0 0 0;\r\n    font-size: 14px;\r\n  }\r\n  \r\n  .team .member .social {\r\n    margin-top: 12px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: flex-start;\r\n  }\r\n  \r\n  .team .member .social a {\r\n    transition: ease-in-out 0.3s;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    border-radius: 50px;\r\n    width: 32px;\r\n    height: 32px;\r\n    background: #eff2f8;\r\n  }\r\n  \r\n  .team .member .social a i {\r\n    color: #37517e;\r\n    font-size: 16px;\r\n    margin: 0 2px;\r\n  }\r\n  \r\n  .team .member .social a:hover {\r\n    background: #47b2e4;\r\n  }\r\n  \r\n  .team .member .social a:hover i {\r\n    color: #fff;\r\n  }\r\n  \r\n  .team .member .social a+a {\r\n    margin-left: 8px;\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Pricing\r\n  --------------------------------------------------------------*/\r\n  .pricing .row {\r\n    padding-top: 40px;\r\n  }\r\n  \r\n  .pricing .box {\r\n    padding: 60px 40px;\r\n    box-shadow: 0 3px 20px -2px rgba(20, 45, 100, 0.1);\r\n    background: #fff;\r\n    height: 100%;\r\n    border-top: 4px solid #fff;\r\n    border-radius: 5px;\r\n  }\r\n  \r\n  .pricing h3 {\r\n    font-weight: 500;\r\n    margin-bottom: 15px;\r\n    font-size: 20px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .pricing h4 {\r\n    font-size: 48px;\r\n    color: #37517e;\r\n    font-weight: 400;\r\n    font-family: \"Jost\", sans-serif;\r\n    margin-bottom: 25px;\r\n  }\r\n  \r\n  .pricing h4 sup {\r\n    font-size: 28px;\r\n  }\r\n  \r\n  .pricing h4 span {\r\n    color: #47b2e4;\r\n    font-size: 18px;\r\n    display: block;\r\n  }\r\n  \r\n  .pricing ul {\r\n    padding: 20px 0;\r\n    list-style: none;\r\n    color: #999;\r\n    text-align: left;\r\n    line-height: 20px;\r\n  }\r\n  \r\n  .pricing ul li {\r\n    padding: 10px 0 10px 30px;\r\n    position: relative;\r\n  }\r\n  \r\n  .pricing ul i {\r\n    color: #28a745;\r\n    font-size: 24px;\r\n    position: absolute;\r\n    left: 0;\r\n    top: 6px;\r\n  }\r\n  \r\n  .pricing ul .na {\r\n    color: #ccc;\r\n  }\r\n  \r\n  .pricing ul .na i {\r\n    color: #ccc;\r\n  }\r\n  \r\n  .pricing ul .na span {\r\n    text-decoration: line-through;\r\n  }\r\n  \r\n  .pricing .buy-btn {\r\n    display: inline-block;\r\n    padding: 12px 35px;\r\n    border-radius: 50px;\r\n    color: #47b2e4;\r\n    transition: none;\r\n    font-size: 16px;\r\n    font-weight: 500;\r\n    font-family: \"Jost\", sans-serif;\r\n    transition: 0.3s;\r\n    border: 1px solid #47b2e4;\r\n  }\r\n  \r\n  .pricing .buy-btn:hover {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .pricing .featured {\r\n    border-top-color: #47b2e4;\r\n  }\r\n  \r\n  .pricing .featured .buy-btn {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .pricing .featured .buy-btn:hover {\r\n    background: #23a3df;\r\n  }\r\n  \r\n  @media (max-width: 992px) {\r\n    .pricing .box {\r\n      max-width: 60%;\r\n      margin: 0 auto 30px auto;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 767px) {\r\n    .pricing .box {\r\n      max-width: 80%;\r\n      margin: 0 auto 30px auto;\r\n    }\r\n  }\r\n  \r\n  @media (max-width: 420px) {\r\n    .pricing .box {\r\n      max-width: 100%;\r\n      margin: 0 auto 30px auto;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Frequently Asked Questions\r\n  --------------------------------------------------------------*/\r\n  .faq .faq-list {\r\n    padding: 0 100px;\r\n  }\r\n  \r\n  .faq .faq-list ul {\r\n    padding: 0;\r\n    list-style: none;\r\n  }\r\n  \r\n  .faq .faq-list li+li {\r\n    margin-top: 15px;\r\n  }\r\n  \r\n  .faq .faq-list li {\r\n    padding: 20px;\r\n    background: #fff;\r\n    border-radius: 4px;\r\n    position: relative;\r\n  }\r\n  \r\n  .faq .faq-list a {\r\n    display: block;\r\n    position: relative;\r\n    font-family: \"Poppins\", sans-serif;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    font-weight: 500;\r\n    padding: 0 30px;\r\n    outline: none;\r\n    cursor: pointer;\r\n  }\r\n  \r\n  .faq .faq-list .icon-help {\r\n    font-size: 24px;\r\n    position: absolute;\r\n    right: 0;\r\n    left: 20px;\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .faq .faq-list .icon-show,\r\n  .faq .faq-list .icon-close {\r\n    font-size: 24px;\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n  }\r\n  \r\n  .faq .faq-list p {\r\n    margin-bottom: 0;\r\n    padding: 10px 0 0 0;\r\n  }\r\n  \r\n  .faq .faq-list .icon-show {\r\n    display: none;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed {\r\n    color: #37517e;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed:hover {\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed .icon-show {\r\n    display: inline-block;\r\n  }\r\n  \r\n  .faq .faq-list a.collapsed .icon-close {\r\n    display: none;\r\n  }\r\n  \r\n  @media (max-width: 1200px) {\r\n    .faq .faq-list {\r\n      padding: 0;\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Contact\r\n  --------------------------------------------------------------*/\r\n  .contact .info {\r\n    border-top: 3px solid #47b2e4;\r\n    border-bottom: 3px solid #47b2e4;\r\n    padding: 30px;\r\n    background: #fff;\r\n    width: 100%;\r\n    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.1);\r\n  }\r\n  \r\n  .contact .info i {\r\n    font-size: 20px;\r\n    color: #47b2e4;\r\n    float: left;\r\n    width: 44px;\r\n    height: 44px;\r\n    background: #e7f5fb;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-radius: 50px;\r\n    transition: all 0.3s ease-in-out;\r\n  }\r\n  \r\n  .contact .info h4 {\r\n    padding: 0 0 0 60px;\r\n    font-size: 22px;\r\n    font-weight: 600;\r\n    margin-bottom: 5px;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .contact .info p {\r\n    padding: 0 0 10px 60px;\r\n    margin-bottom: 20px;\r\n    font-size: 14px;\r\n    color: #6182ba;\r\n  }\r\n  \r\n  .contact .info .email p {\r\n    padding-top: 5px;\r\n  }\r\n  \r\n  .contact .info .social-links {\r\n    padding-left: 60px;\r\n  }\r\n  \r\n  .contact .info .social-links a {\r\n    font-size: 18px;\r\n    display: inline-block;\r\n    background: #333;\r\n    color: #fff;\r\n    line-height: 1;\r\n    padding: 8px 0;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    width: 36px;\r\n    height: 36px;\r\n    transition: 0.3s;\r\n    margin-right: 10px;\r\n  }\r\n  \r\n  .contact .info .social-links a:hover {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .contact .info .email:hover i,\r\n  .contact .info .address:hover i,\r\n  .contact .info .phone:hover i {\r\n    background: #47b2e4;\r\n    color: #fff;\r\n  }\r\n  \r\n  .contact .php-email-form {\r\n    width: 100%;\r\n    border-top: 3px solid #47b2e4;\r\n    border-bottom: 3px solid #47b2e4;\r\n    padding: 30px;\r\n    background: #fff;\r\n    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);\r\n  }\r\n  \r\n  .contact .php-email-form .form-group {\r\n    padding-bottom: 8px;\r\n  }\r\n  \r\n  .contact .php-email-form .validate {\r\n    display: none;\r\n    color: red;\r\n    margin: 0 0 15px 0;\r\n    font-weight: 400;\r\n    font-size: 13px;\r\n  }\r\n  \r\n  .contact .php-email-form .error-message {\r\n    display: none;\r\n    color: #fff;\r\n    background: #ed3c0d;\r\n    text-align: left;\r\n    padding: 15px;\r\n    font-weight: 600;\r\n  }\r\n  \r\n  .contact .php-email-form .error-message br+br {\r\n    margin-top: 25px;\r\n  }\r\n  \r\n  .contact .php-email-form .sent-message {\r\n    display: none;\r\n    color: #fff;\r\n    background: #18d26e;\r\n    text-align: center;\r\n    padding: 15px;\r\n    font-weight: 600;\r\n  }\r\n  \r\n  .contact .php-email-form .loading {\r\n    display: none;\r\n    background: #fff;\r\n    text-align: center;\r\n    padding: 15px;\r\n  }\r\n  \r\n  .contact .php-email-form .loading:before {\r\n    content: \"\";\r\n    display: inline-block;\r\n    border-radius: 50%;\r\n    width: 24px;\r\n    height: 24px;\r\n    margin: 0 10px -6px 0;\r\n    border: 3px solid #18d26e;\r\n    border-top-color: #eee;\r\n    animation: animate-loading 1s linear infinite;\r\n  }\r\n  \r\n  .contact .php-email-form .form-group {\r\n    margin-bottom: 20px;\r\n  }\r\n  \r\n  .contact .php-email-form label {\r\n    padding-bottom: 8px;\r\n  }\r\n  \r\n  .contact .php-email-form input,\r\n  .contact .php-email-form textarea {\r\n    border-radius: 0;\r\n    box-shadow: none;\r\n    font-size: 14px;\r\n    border-radius: 4px;\r\n  }\r\n  \r\n  .contact .php-email-form input:focus,\r\n  .contact .php-email-form textarea:focus {\r\n    border-color: #47b2e4;\r\n  }\r\n  \r\n  .contact .php-email-form input {\r\n    height: 44px;\r\n  }\r\n  \r\n  .contact .php-email-form textarea {\r\n    padding: 10px 12px;\r\n  }\r\n  \r\n  .contact .php-email-form button[type=submit] {\r\n    background: #47b2e4;\r\n    border: 0;\r\n    padding: 12px 34px;\r\n    color: #fff;\r\n    transition: 0.4s;\r\n    border-radius: 50px;\r\n  }\r\n  \r\n  .contact .php-email-form button[type=submit]:hover {\r\n    background: #209dd8;\r\n  }\r\n  \r\n  @keyframes animate-loading {\r\n    0% {\r\n      transform: rotate(0deg);\r\n    }\r\n  \r\n    100% {\r\n      transform: rotate(360deg);\r\n    }\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Breadcrumbs\r\n  --------------------------------------------------------------*/\r\n  .breadcrumbs {\r\n    padding: 15px 0;\r\n    background: #f3f5fa;\r\n    min-height: 40px;\r\n    margin-top: 72px;\r\n  }\r\n  \r\n  @media (max-width: 992px) {\r\n    .breadcrumbs {\r\n      margin-top: 68px;\r\n    }\r\n  }\r\n  \r\n  .breadcrumbs h2 {\r\n    font-size: 28px;\r\n    font-weight: 600;\r\n    color: #37517e;\r\n  }\r\n  \r\n  .breadcrumbs ol {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    list-style: none;\r\n    padding: 0 0 10px 0;\r\n    margin: 0;\r\n    font-size: 14px;\r\n  }\r\n  \r\n  .breadcrumbs ol li+li {\r\n    padding-left: 10px;\r\n  }\r\n  \r\n  .breadcrumbs ol li+li::before {\r\n    display: inline-block;\r\n    padding-right: 10px;\r\n    color: #4668a2;\r\n    content: \"/\";\r\n  }\r\n  \r\n  /*--------------------------------------------------------------\r\n  # Footer\r\n  --------------------------------------------------------------*/\r\n  #footer-front {\r\n    font-size: 14px;\r\n    background: #37517e;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter {\r\n    padding: 50px 0;\r\n    background: #f3f5fa;\r\n    text-align: center;\r\n    font-size: 15px;\r\n    color: #444444;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter h4 {\r\n    font-size: 24px;\r\n    margin: 0 0 20px 0;\r\n    padding: 0;\r\n    line-height: 1;\r\n    font-weight: 600;\r\n    color: #37517e;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form {\r\n    margin-top: 30px;\r\n    background: #fff;\r\n    padding: 6px 10px;\r\n    position: relative;\r\n    border-radius: 50px;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);\r\n    text-align: left;\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form input[type=email] {\r\n    border: 0;\r\n    padding: 4px 8px;\r\n    width: calc(100% - 100px);\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form input[type=submit] {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    border: 0;\r\n    background: none;\r\n    font-size: 16px;\r\n    padding: 0 20px;\r\n    background: #47b2e4;\r\n    color: #fff;\r\n    transition: 0.3s;\r\n    border-radius: 50px;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);\r\n  }\r\n  \r\n  #footer-front .footer-newsletter form input[type=submit]:hover {\r\n    background: #209dd8;\r\n  }\r\n  \r\n  #footer-front .footer-top {\r\n    padding: 60px 0 30px 0;\r\n    background: #fff;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-contact {\r\n    margin-bottom: 30px;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-contact h3 {\r\n    font-size: 28px;\r\n    margin: 0 0 10px 0;\r\n    padding: 2px 0 2px 0;\r\n    line-height: 1;\r\n    text-transform: uppercase;\r\n    font-weight: 600;\r\n    color: #37517e;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-contact p {\r\n    font-size: 14px;\r\n    line-height: 24px;\r\n    margin-bottom: 0;\r\n    font-family: \"Jost\", sans-serif;\r\n    color: #5e5e5e;\r\n  }\r\n  \r\n  #footer-front .footer-top h4 {\r\n    font-size: 16px;\r\n    font-weight: bold;\r\n    color: #37517e;\r\n    position: relative;\r\n    padding-bottom: 12px;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links {\r\n    margin-bottom: 30px;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul {\r\n    list-style: none;\r\n    padding: 0;\r\n    margin: 0;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul i {\r\n    padding-right: 2px;\r\n    color: #47b2e4;\r\n    font-size: 18px;\r\n    line-height: 1;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul li {\r\n    padding: 10px 0;\r\n    display: flex;\r\n    align-items: center;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul li:first-child {\r\n    padding-top: 0;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul a {\r\n    color: #777777;\r\n    transition: 0.3s;\r\n    display: inline-block;\r\n    line-height: 1;\r\n  }\r\n  \r\n  #footer-front .footer-top .footer-links ul a:hover {\r\n    text-decoration: none;\r\n    color: #47b2e4;\r\n  }\r\n  \r\n  #footer-front .footer-top .social-links a {\r\n    font-size: 18px;\r\n    display: inline-block;\r\n    background: #47b2e4;\r\n    color: #fff;\r\n    line-height: 1;\r\n    padding: 8px 0;\r\n    margin-right: 4px;\r\n    border-radius: 50%;\r\n    text-align: center;\r\n    width: 36px;\r\n    height: 36px;\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  #footer-front .footer-top .social-links a:hover {\r\n    background: #209dd8;\r\n    color: #fff;\r\n    text-decoration: none;\r\n  }\r\n  \r\n  #footer-front .footer-bottom {\r\n    padding-top: 30px;\r\n    padding-bottom: 30px;\r\n    color: #fff;\r\n  }\r\n  \r\n  #footer-front .copyright {\r\n    float: left;\r\n  }\r\n  \r\n  #footer-front .credits {\r\n    float: right;\r\n    font-size: 13px;\r\n  }\r\n  \r\n  #footer-front .credits a {\r\n    transition: 0.3s;\r\n  }\r\n  \r\n  @media (max-width: 768px) {\r\n    #footer-front .footer-bottom {\r\n      padding-top: 20px;\r\n      padding-bottom: 20px;\r\n    }\r\n  \r\n    #footer-front .copyright,\r\n    #footer-front .credits {\r\n      text-align: center;\r\n      float: none;\r\n    }\r\n  \r\n    #footer-front .credits {\r\n      padding-top: 4px;\r\n    }\r\n  }\r\n\r\n  /* section benefit */\r\n#benefit {\r\n    background-color: #f3f5fa !important;\r\n}\r\n#benefit .d-flex p{\r\n    text-align: left !important;\r\n}\r\n.price_list .icon-box2  {  \r\ntransition: all ease-in-out 0.4s;\r\n}\r\n.price_list .icon-box2:hover {\r\ntransform: translateY(-10px);\r\n}\r\n\r\n/* section projects */\r\n#projects{\r\n  background-color: #f3f5fa !important;\r\n}\r\n#projects .d-flex h1 {\r\n  font-weight: bold;\r\n  font-weight: bold;\r\n  font-size: 3.7em; \r\n}\r\n#projects .d-flex p {\r\n  font-weight: bold;\r\n  text-align: center !important;\r\n    line-height: 0px;\r\n}\r\n  \r\n@media (max-width: 767px) {\r\n  #projects .d-flex h1 { \r\n    font-size: 2.7em !important; \r\n  }\r\n  #projects .d-flex p { \r\n    line-height: 1 !important;\r\n  }\r\n}\r\n\r\n@media (max-width: 420px) {\r\n  #projects .d-flex h1 { \r\n    font-size: 1.8em !important; \r\n  }\r\n  #projects .d-flex p {  \r\n    line-height: 1 !important;\r\n  }\r\n}\r\n\r\n  /* section faq */\r\n#faq {\r\n    background-color: #f3f5fa !important;\r\n}\r\n#faq .d-flex p{\r\n    text-align: left !important;\r\n}\r\n\r\n/* content card */\r\n.content_card {\r\n  position: relative;\r\n  width: 100%;\r\n  max-width: 400px;\r\n  margin: auto;\r\n  overflow: hidden;\r\n}\r\n\r\n.content_card .content_card-overlay {\r\n  background: rgba(0,0,0,0.7);\r\n  position: absolute;\r\n  height: 99%;\r\n  width: 100%;\r\n  left: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  right: 0;\r\n  opacity: 0;\r\n  -webkit-transition: all 0.4s ease-in-out 0s;\r\n  -moz-transition: all 0.4s ease-in-out 0s;\r\n  transition: all 0.4s ease-in-out 0s;\r\n}\r\n\r\n.content_card:hover .content_card-overlay{\r\n  opacity: 1;\r\n}\r\n\r\n.content_card-image{\r\n  width: 100%;\r\n}\r\n\r\n.content_card-details {\r\n  position: absolute;\r\n  text-align: center;\r\n  padding-left: 1em;\r\n  padding-right: 1em;\r\n  width: 100%;\r\n  top: 50%;\r\n  left: 50%;\r\n  opacity: 0;\r\n  -webkit-transform: translate(-50%, -50%);\r\n  -moz-transform: translate(-50%, -50%);\r\n  transform: translate(-50%, -50%);\r\n  -webkit-transition: all 0.3s ease-in-out 0s;\r\n  -moz-transition: all 0.3s ease-in-out 0s;\r\n  transition: all 0.3s ease-in-out 0s;\r\n}\r\n\r\n.content_card:hover .content_card-details{\r\n  top: 50%;\r\n  left: 50%;\r\n  opacity: 1;\r\n}\r\n\r\n.content_card-details h3{\r\n  color: #fff;\r\n  font-weight: 500;\r\n  /* letter-spacing: 0.15em; */\r\n  margin-bottom: 0.5em;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.content_card-details p{\r\n  color: #fff;\r\n  font-size: 0.8em;\r\n  text-align: center !important;\r\n  line-height: 0px;\r\n}\r\n\r\n.fadeIn-bottom{\r\n  top: 80%;\r\n}\r\n\r\n.fadeIn-top{\r\n  top: 20%;\r\n}\r\n.fadeIn-bottom{\r\n  top: 80%;\r\n}\r\n\r\n.fadeIn-top{\r\n  top: 20%;\r\n}\r\n\r\n.fadeIn-left{\r\n  left: 20%;\r\n}\r\n\r\n.fadeIn-right{\r\n  left: 80%;\r\n}\r\n.content_card  .flex-container {\r\n  display: flex;\r\n  color: #fff;\r\n  flex-wrap: revert;  \r\n  justify-content: center;\r\n} \r\n.content_card  .flex-container  .flex-item {\r\n  background: transparent;\r\n  font-size: 2.5em;\r\n  margin-right: 10px;\r\n}\r\n\r\n\r\n/*--------------------------------------------------------------\r\n# Testimonials\r\n--------------------------------------------------------------*/\r\n.testimonials {\r\n  padding: 80px 0;\r\n  background: url(\"/images/cta-bg.jpg\") no-repeat;\r\n  background-position: center center;\r\n  background-size: cover;\r\n  position: relative;\r\n}\r\n\r\n.testimonials::before {\r\n  content: \"\";\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  background: rgba(0, 0, 0, 0.7);\r\n}\r\n\r\n.testimonials .section-header {\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.testimonials .testimonials-carousel,\r\n.testimonials .testimonials-slider {\r\n  overflow: hidden;\r\n}\r\n\r\n.testimonials .testimonial-item {\r\n  text-align: center;\r\n  color: #fff;\r\n}\r\n.testimonials p {\r\n  text-align: center !important; \r\n}\r\n\r\n.testimonials .testimonial-item .testimonial-img {\r\n  width: 100px;\r\n  border-radius: 50%;\r\n  border: 6px solid rgba(255, 255, 255, 0.15);\r\n  margin: 0 auto;\r\n}\r\n\r\n.testimonials .testimonial-item h3 {\r\n  font-size: 20px;\r\n  font-weight: bold;\r\n  margin: 10px 0 5px 0;\r\n  color: #fff;\r\n}\r\n\r\n.testimonials .testimonial-item h4 {\r\n  font-size: 14px;\r\n  color: #ddd;\r\n  margin: 0 0 15px 0;\r\n}\r\n\r\n.testimonials .testimonial-item .quote-icon-left,\r\n.testimonials .testimonial-item .quote-icon-right {\r\n  color: rgba(255, 255, 255, 0.6);\r\n  font-size: 26px;\r\n}\r\n\r\n.testimonials .testimonial-item .quote-icon-left {\r\n  display: inline-block;\r\n  left: -5px;\r\n  position: relative;\r\n}\r\n\r\n.testimonials .testimonial-item .quote-icon-right {\r\n  display: inline-block;\r\n  right: -5px;\r\n  position: relative;\r\n  top: 10px;\r\n}\r\n\r\n.testimonials .testimonial-item p {\r\n  font-style: italic;\r\n  margin: 0 auto 15px auto;\r\n  color: #eee;\r\n}\r\n\r\n.testimonials .swiper-pagination {\r\n  margin-top: 20px;\r\n  position: relative;\r\n}\r\n\r\n.testimonials .swiper-pagination .swiper-pagination-bullet {\r\n  width: 12px;\r\n  height: 12px;\r\n  background-color: rgba(255, 255, 255, 0.4);\r\n  opacity: 0.5;\r\n}\r\n\r\n.testimonials .swiper-pagination .swiper-pagination-bullet-active {\r\n  background-color: #ffc451;\r\n  opacity: 1;\r\n}\r\n\r\n@media (min-width: 1024px) {\r\n  .testimonials {\r\n    background-attachment: fixed;\r\n  }\r\n}\r\n\r\n@media (min-width: 992px) {\r\n  .testimonials .testimonial-item p {\r\n    width: 80%;\r\n  }\r\n}\r\n\r\n\r\n\r\n/* CONTETNT BLOG */\r\n/* content card */\r\n.content_blog {\r\n  position: relative;\r\n  width: 100%;\r\n  max-width: 400px;\r\n  min-height: 310px !important;\r\n  max-height: 310px !important;\r\n  margin: auto;\r\n  overflow: hidden;\r\n} \r\n.content_blog img {\r\n  object-fit: cover;\r\n  height: 310px;\r\n}\r\n.content_blog-details {\r\n  padding: 15vh 10px;\r\n  position: absolute;\r\n  overflow: hidden;\r\n  top: 0; \r\n  background: linear-gradient(to bottom, rgba(0, 47, 75, 0.02) 0%,rgba(0, 0, 0, 0.6) 100%);\r\n  color: white;\r\n  width: 100%;\r\n  height: 100%;\r\n  margin: 0 auto;\r\n  text-align: center !important;\r\n}\r\n.content_blog-details:hover {\r\n \r\n  background: linear-gradient(to bottom, rgba(0, 123, 195, 0.02) 0%,rgba(98, 81, 173, 0.6) 100%);\r\n \r\n}\r\n.content_blog-details p{\r\n  /* line-height: 0 !important; */\r\n  color: white;\r\n  text-align: center !important;\r\n  text-align: justify !important;\r\n  padding: 0px 20px;\r\n} \r\n\r\n\r\n#whatsapp {\r\n  background: #fff;\r\n  color: #404040;\r\n  position: fixed;\r\n  display: flex;\r\n  font-weight: 400;\r\n  justify-content: space-between;\r\n  z-index: 98;\r\n  bottom: 25px;\r\n  right: 30px;\r\n  font-size: 15px;\r\n  padding: 10px 20px;\r\n  border-radius: 30px;\r\n  box-shadow: 0 1px 15px rgba(32, 33, 36, 0.28);\r\n  cursor: pointer;\r\n  border: 0;\r\n}\r\n#whatsapp a{\r\n  padding-top: -100px;\r\n  text-decoration: none;\r\n}\r\n#whatsapp a:hover{\r\n  text-decoration: none;\r\n}\r\n#whatsapp i{\r\n  font-size: 2.5em;\r\n  color: #30a83f;\r\n  padding-right: 4px; \r\n}\r\n#whatsapp a {\r\n  padding-top: 10px !important;\r\n}\r\n\r\n  \r\n@media (max-width: 767px) {\r\n #whatsapp {\r\n    bottom: 15px !important;\r\n }\r\n}\r\n\r\n@media (max-width: 420px) {\r\n #whatsapp {\r\n    right: 10px !important;\r\n }\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1045,7 +1071,7 @@ var render = function () {
     ),
     _vm._v(" "),
     _c("main", { attrs: { id: "main" } }, [
-      _c("section", { staticClass: "service", attrs: { id: "service" } }, [
+      _c("section", { staticClass: "services", attrs: { id: "services" } }, [
         _c(
           "div",
           { staticClass: "container", attrs: { "data-aos": "fade-up" } },
@@ -1056,7 +1082,7 @@ var render = function () {
               _c(
                 "div",
                 { staticClass: "row mt-5 mb-5" },
-                _vm._l(_vm.services.data, function (v) {
+                _vm._l(_vm.services.data, function (v, k) {
                   return _c(
                     "div",
                     {
@@ -1066,7 +1092,7 @@ var render = function () {
                         _vm.services.data.length >= 3 ? "col-md-4" : "col-md-6",
                       attrs: {
                         "data-aos": "fade-right",
-                        "data-aos-delay": "300",
+                        "data-aos-delay": 100 * (k + 1),
                       },
                     },
                     [
@@ -1130,9 +1156,74 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _vm._m(5),
+      _c("section", { staticClass: "benefit", attrs: { id: "benefit" } }, [
+        _c("div", { staticClass: "container" }, [
+          _vm._m(5),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.benefits.data, function (v, k) {
+              return _c(
+                "div",
+                {
+                  key: v.id,
+                  staticClass: "col-md-6",
+                  attrs: {
+                    "data-aos": "fade-up",
+                    "data-aos-delay": 300 * (k + 1),
+                  },
+                },
+                [
+                  _c("div", { staticClass: "d-flex" }, [
+                    _c("div", { staticClass: "col-3" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "icon-benefit",
+                          staticStyle: {
+                            "border-radius": "50%",
+                            color: "rgb(255, 255, 255)",
+                            "-webkit-text-stroke": "2px rgb(125, 174, 228)",
+                            width: "100px",
+                            height: "100px",
+                            "line-height": "100px",
+                            "text-align": "center",
+                            "margin-left": "40px",
+                          },
+                        },
+                        [
+                          _c("i", {
+                            class: v.image,
+                            staticStyle: { "font-size": "50px !important" },
+                          }),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-9" }, [
+                      _c("h2", [_vm._v(_vm._s(v.title))]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "\n                              " +
+                            _vm._s(v.body) +
+                            "\n                            "
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                ]
+              )
+            }),
+            0
+          ),
+        ]),
+      ]),
       _vm._v(" "),
       _vm._m(6),
+      _vm._v(" "),
+      _vm._m(7),
       _vm._v(" "),
       _c(
         "section",
@@ -1221,11 +1312,70 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _vm._m(7),
+      _vm._m(8),
+      _vm._v(" "),
+      _c("section", { staticClass: "blog", attrs: { id: "blog" } }, [
+        _c("div", { staticClass: "container mt-3" }, [
+          _vm._m(9),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _vm._l(_vm.posts.data, function (v, k) {
+                return _c(
+                  "div",
+                  {
+                    key: v.id,
+                    staticClass: "col-md-4",
+                    attrs: {
+                      "data-aos": "fade-left",
+                      "data-aos-delay": 300 * (k + 1),
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "content_blog pt-2" }, [
+                      _c("a", { attrs: { href: "" } }, [
+                        _c("div", {
+                          staticClass: "content_blog-overlay fadeIn-bottom",
+                        }),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "content_card-image",
+                          attrs: { src: v.image, alt: "" },
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "content_blog-details" }, [
+                          _c("h3", { staticClass: "content_card-title" }, [
+                            _vm._v(_vm._s(v.title) + " "),
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { domProps: { innerHTML: _vm._s(v.body) } }),
+                        ]),
+                      ]),
+                    ]),
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "d-flex justify-content-end pt-2 px-3 text-white",
+                  class: _vm.posts.count >= 4 ? "" : "d-none",
+                },
+                [_vm._m(10)]
+              ),
+            ],
+            2
+          ),
+        ]),
+      ]),
       _vm._v(" "),
       _c(
         "section",
-        { staticClass: "why-us section-bg", attrs: { id: "why-us" } },
+        { staticClass: "why-us section-bg", attrs: { id: "faq" } },
         [
           _c(
             "div",
@@ -1242,7 +1392,7 @@ var render = function () {
                       "col-lg-7 d-flex flex-column justify-content-center align-items-stretch order-2 order-lg-1",
                   },
                   [
-                    _vm._m(8),
+                    _vm._m(11),
                     _vm._v(" "),
                     _c("div", { staticClass: "accordion-list" }, [
                       _c(
@@ -1321,9 +1471,41 @@ var render = function () {
           ),
         ]
       ),
+      _vm._v(" "),
+      _vm._m(12),
     ]),
     _vm._v(" "),
-    _vm._m(9),
+    _c("footer", { attrs: { id: "footer-front" } }, [
+      _c("div", { staticClass: "footer-top" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _vm._m(13),
+            _vm._v(" "),
+            _vm._m(14),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-3 col-md-6 footer-links" }, [
+              _c("h4", [_vm._v("Our Services")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                _vm._l(_vm.services.data, function (v) {
+                  return _c("li", { key: v.id }, [
+                    _c("i", { staticClass: "bx bx-chevron-right" }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#service" } }, [
+                      _vm._v(_vm._s(v.title)),
+                    ]),
+                  ])
+                }),
+                0
+              ),
+            ]),
+            _vm._v(" "),
+            _vm._m(15),
+          ]),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -1353,14 +1535,6 @@ var staticRenderFns = [
             _c("li", [
               _c(
                 "a",
-                { staticClass: "nav-link scrollto", attrs: { href: "#about" } },
-                [_vm._v("About")]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c(
-                "a",
                 {
                   staticClass: "nav-link scrollto",
                   attrs: { href: "#services" },
@@ -1372,9 +1546,28 @@ var staticRenderFns = [
             _c("li", [
               _c(
                 "a",
+                { staticClass: "nav-link scrollto", attrs: { href: "#about" } },
+                [_vm._v("About")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
                 {
                   staticClass: "nav-link scrollto",
-                  attrs: { href: "#portfolio" },
+                  attrs: { href: "#benefit" },
+                },
+                [_vm._v("Benefit")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link scrollto",
+                  attrs: { href: "#projects" },
                 },
                 [_vm._v("Portfolio")]
               ),
@@ -1383,85 +1576,27 @@ var staticRenderFns = [
             _c("li", [
               _c(
                 "a",
-                { staticClass: "nav-link scrollto", attrs: { href: "#team" } },
-                [_vm._v("Team")]
+                {
+                  staticClass: "nav-link scrollto",
+                  attrs: { href: "#price_list" },
+                },
+                [_vm._v("Price")]
               ),
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "dropdown" }, [
-              _c("a", { attrs: { href: "#" } }, [
-                _c("span", [_vm._v("Drop Down")]),
-                _vm._v(" "),
-                _c("i", { staticClass: "bi bi-chevron-down" }),
-              ]),
-              _vm._v(" "),
-              _c("ul", [
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Drop Down 1")]),
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "dropdown" }, [
-                  _c("a", { attrs: { href: "#" } }, [
-                    _c("span", [_vm._v("Deep Drop Down")]),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "bi bi-chevron-right" }),
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Deep Drop Down 1"),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Deep Drop Down 2"),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Deep Drop Down 3"),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Deep Drop Down 4"),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Deep Drop Down 5"),
-                      ]),
-                    ]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Drop Down 2")]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Drop Down 3")]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Drop Down 4")]),
-                ]),
-              ]),
             ]),
             _vm._v(" "),
             _c("li", [
               _c(
                 "a",
-                {
-                  staticClass: "nav-link scrollto",
-                  attrs: { href: "#contact" },
-                },
-                [_vm._v("Contact")]
+                { staticClass: "nav-link scrollto", attrs: { href: "#blog" } },
+                [_vm._v("Blog")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                { staticClass: "nav-link scrollto", attrs: { href: "#faq" } },
+                [_vm._v("Faq")]
               ),
             ]),
             _vm._v(" "),
@@ -1583,208 +1718,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "benefit", attrs: { id: "benefit" } }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "div",
-          {
-            staticClass: "section-title",
-            attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
-          },
-          [
-            _c("h2", [_vm._v("Benefit")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradise"
-              ),
-            ]),
-          ]
-        ),
+    return _c(
+      "div",
+      {
+        staticClass: "section-title",
+        attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
+      },
+      [
+        _c("h2", [_vm._v("Benefit")]),
         _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            {
-              staticClass: "col-md-6",
-              attrs: { "data-aos": "fade-up", "data-aos-delay": "300" },
-            },
-            [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "col-3" }, [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        "border-radius": "50%",
-                        color: "rgb(255, 255, 255)",
-                        "-webkit-text-stroke": "2px rgb(125, 174, 228)",
-                        width: "100px",
-                        height: "100px",
-                        "line-height": "100px",
-                        "text-align": "center",
-                        "margin-left": "40px",
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "bi bi-stack",
-                        staticStyle: { "font-size": "50px !important" },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-9" }, [
-                  _c("h2", [_vm._v("Lorem, ipsum dolor sit ")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n                              amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.\n                            "
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-md-6",
-              attrs: { "data-aos": "fade-up", "data-aos-delay": "300" },
-            },
-            [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "col-3" }, [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        "border-radius": "50%",
-                        color: "rgb(255, 255, 255)",
-                        "-webkit-text-stroke": "2px rgb(125, 174, 228)",
-                        width: "100px",
-                        height: "100px",
-                        "line-height": "100px",
-                        "text-align": "center",
-                        "margin-left": "40px",
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "bi bi-stack",
-                        staticStyle: { "font-size": "50px !important" },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-9" }, [
-                  _c("h2", [_vm._v("Lorem, ipsum dolor sit ")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n                              amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.\n                            "
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-md-6",
-              attrs: { "data-aos": "fade-up", "data-aos-delay": "400" },
-            },
-            [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "col-3" }, [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        "border-radius": "50%",
-                        color: "rgb(255, 255, 255)",
-                        "-webkit-text-stroke": "2px rgb(125, 174, 228)",
-                        width: "100px",
-                        height: "100px",
-                        "line-height": "100px",
-                        "text-align": "center",
-                        "margin-left": "40px",
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "bi bi-stack",
-                        staticStyle: { "font-size": "50px !important" },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-9" }, [
-                  _c("h2", [_vm._v("Lorem, ipsum dolor sit ")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n                              amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.\n                            "
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-md-6",
-              attrs: { "data-aos": "fade-up", "data-aos-delay": "500" },
-            },
-            [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "col-3" }, [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        "border-radius": "50%",
-                        color: "rgb(255, 255, 255)",
-                        "-webkit-text-stroke": "2px rgb(125, 174, 228)",
-                        width: "100px",
-                        height: "100px",
-                        "line-height": "100px",
-                        "text-align": "center",
-                        "margin-left": "40px",
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "bi bi-stack",
-                        staticStyle: { "font-size": "50px !important" },
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-9" }, [
-                  _c("h2", [_vm._v("Lorem, ipsum dolor sit ")]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n                              amet consectetur adipisicing elit. Praesentium veritatis voluptatibus exercitationem repudiandae quos, voluptas explicabo velit consequuntur alias totam amet officiis sunt iusto libero temporibus error maxime, dicta voluptatem.\n                            "
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]
+        _c("p", [
+          _vm._v(
+            "A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradise"
           ),
         ]),
-      ]),
-    ])
+      ]
+    )
   },
   function () {
     var _vm = this
@@ -2014,7 +1963,112 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "section",
-      { staticClass: "price_list", attrs: { id: "price_list" } },
+      { staticClass: "projects", attrs: { id: "projects" } },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass: "section-title aos-init aos-animate",
+              attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
+            },
+            [
+              _c("h2", [
+                _vm._v("Our "),
+                _c("span", { staticClass: "text-primary" }, [
+                  _vm._v("Project"),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradise"
+                ),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex text-center" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-4",
+                attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
+              },
+              [
+                _c("h1", { staticClass: "text-primary" }, [
+                  _vm._v("+ "),
+                  _c("span", {
+                    staticClass: "purecounter",
+                    attrs: {
+                      "data-purecounter-start": "0",
+                      "data-purecounter-end": "35",
+                      "data-purecounter-duration": "4",
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v("WorlWide CLient")]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col-4",
+                attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
+              },
+              [
+                _c("h1", { staticClass: "text-primary" }, [
+                  _vm._v("+ "),
+                  _c("span", {
+                    staticClass: "purecounter",
+                    attrs: {
+                      "data-purecounter-start": "0",
+                      "data-purecounter-end": "350",
+                      "data-purecounter-duration": "4",
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v("Team Member")]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col-4",
+                attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
+              },
+              [
+                _c("h1", { staticClass: "text-primary" }, [
+                  _vm._v("+ "),
+                  _c("span", {
+                    staticClass: "purecounter",
+                    attrs: {
+                      "data-purecounter-start": "0",
+                      "data-purecounter-end": "30",
+                      "data-purecounter-duration": "4",
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v("Adversting Spend")]),
+              ]
+            ),
+          ]),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "section",
+      { staticClass: "team d-none", attrs: { id: "team" } },
       [
         _c("div", { staticClass: "container mt-3" }, [
           _c(
@@ -2181,6 +2235,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "section-title",
+        attrs: { "data-aos": "fade-up", "data-aos-delay": "200" },
+      },
+      [
+        _c("h2", [_vm._v("Our Blog")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradise"
+          ),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-sm btn-warning text-white", attrs: { href: "" } },
+      [_vm._v("More   "), _c("span", { staticClass: "bi bi-arrow-right" })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title" }, [
       _c("h2", [
         _vm._v("Faq "),
@@ -2198,138 +2283,110 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { attrs: { id: "footer-front" } }, [
-      _c("div", { staticClass: "footer-top" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-3 col-md-6 footer-contact" }, [
-              _c("h3", [_vm._v("Arsha")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v("\n            A108 Adam Street "),
-                _c("br"),
-                _vm._v("\n            New York, NY 535022"),
-                _c("br"),
-                _vm._v("\n            United States "),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Phone:")]),
-                _vm._v(" +1 5589 55488 55"),
-                _c("br"),
-                _vm._v(" "),
-                _c("strong", [_vm._v("Email:")]),
-                _vm._v(" info@example.com"),
-                _c("br"),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-3 col-md-6 footer-links" }, [
-              _c("h4", [_vm._v("Useful Links")]),
-              _vm._v(" "),
-              _c("ul", [
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Home")]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("About us")]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Services")]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [
-                    _vm._v("Terms of service"),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Privacy policy")]),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-3 col-md-6 footer-links" }, [
-              _c("h4", [_vm._v("Our Services")]),
-              _vm._v(" "),
-              _c("ul", [
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Web Design")]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [
-                    _vm._v("Web Development"),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [
-                    _vm._v("Product Management"),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Marketing")]),
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "bx bx-chevron-right" }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Graphic Design")]),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-3 col-md-6 footer-links" }, [
-              _c("h4", [_vm._v("Our Social Networks")]),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies"
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "social-links mt-3" }, [
-                _c("a", { staticClass: "twitter", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "bx bxl-twitter" }),
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "facebook", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "bx bxl-facebook" }),
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "instagram", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "bx bxl-instagram" }),
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "linkedin", attrs: { href: "#" } }, [
-                  _c("i", { staticClass: "bx bxl-linkedin" }),
-                ]),
-              ]),
-            ]),
-          ]),
+    return _c("section", { attrs: { id: "whatsapp" } }, [
+      _c("i", { staticClass: "bx bxl-whatsapp" }),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "" } }, [_c("span", [_vm._v("Whatsapp Kami")])]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 col-md-6 footer-contact" }, [
+      _c("h3", [_vm._v("Arsha")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("\n            A108 Adam Street "),
+        _c("br"),
+        _vm._v("\n            New York, NY 535022"),
+        _c("br"),
+        _vm._v("\n            United States "),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("strong", [_vm._v("Phone:")]),
+        _vm._v(" +1 5589 55488 55"),
+        _c("br"),
+        _vm._v(" "),
+        _c("strong", [_vm._v("Email:")]),
+        _vm._v(" info@example.com"),
+        _c("br"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 col-md-6 footer-links" }, [
+      _c("h4", [_vm._v("Useful Links")]),
+      _vm._v(" "),
+      _c("ul", [
+        _c("li", [
+          _c("i", { staticClass: "bx bx-chevron-right" }),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Home")]),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("i", { staticClass: "bx bx-chevron-right" }),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("About us")]),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("i", { staticClass: "bx bx-chevron-right" }),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Services")]),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("i", { staticClass: "bx bx-chevron-right" }),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Terms of service")]),
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c("i", { staticClass: "bx bx-chevron-right" }),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Privacy policy")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-lg-3 col-md-6 footer-links" }, [
+      _c("h4", [_vm._v("Our Social Networks")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies"
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "social-links mt-3" }, [
+        _c("a", { staticClass: "twitter", attrs: { href: "#" } }, [
+          _c("i", { staticClass: "bx bxl-tiktok" }),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "twitter", attrs: { href: "#" } }, [
+          _c("i", { staticClass: "bx bxl-twitter" }),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "facebook", attrs: { href: "#" } }, [
+          _c("i", { staticClass: "bx bxl-facebook" }),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "instagram", attrs: { href: "#" } }, [
+          _c("i", { staticClass: "bx bxl-instagram" }),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "linkedin", attrs: { href: "#" } }, [
+          _c("i", { staticClass: "bx bxl-linkedin" }),
         ]),
       ]),
     ])

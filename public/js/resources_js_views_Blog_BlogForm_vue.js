@@ -780,10 +780,10 @@ var token = document.head.querySelector("[name=csrf-token]").content;
       formData.append('image', this.jsonData.image);
       formData.append("_token", token);
       if (this.isAdd) {
+        var msg = 'Failed add blog';
         this.$axios.post("api/post/", formData).then(function (response) {
           _this2.proses = false;
-          var stat = 'error',
-            msg = 'Failed add blog';
+          var stat = 'error';
           _this2.$validation(response.data.msg, _this2.jsonResp);
           if (response.data.status) {
             stat = 'success', msg = 'Success add blog';
@@ -797,21 +797,21 @@ var token = document.head.querySelector("[name=csrf-token]").content;
           _this2.proses = false;
         });
       } else {
+        var _msg = 'Failed Update blog';
         formData.append('_method', 'PATCH');
         this.$axios.post("api/post/" + this.thisId, formData).then(function (response) {
           _this2.proses = false;
-          var stat = 'error',
-            msg = 'Failed Update blog';
+          var stat = 'error';
           _this2.$validation(response.data.msg, _this2.jsonResp);
           if (response.data.status) {
-            stat = 'success', msg = 'Success Update blog';
+            stat = 'success', _msg = 'Success Update blog';
             _this2.$router.push({
               name: "blog"
             });
           }
-          _this2.$isAlert(_this2, msg, stat);
+          _this2.$isAlert(_this2, _msg, stat);
         })["catch"](function () {
-          _this2.$isAlert(_this2, msg, stat);
+          _this2.$isAlert(_this2, _msg, stat);
           _this2.proses = false;
         });
       }

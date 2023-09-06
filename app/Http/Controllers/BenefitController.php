@@ -116,4 +116,8 @@ class BenefitController extends Controller
             return response()->json(['status' => true, 'msg' => 'Update sukses ', 'data' =>  $check], Response::HTTP_OK); 
         }
     }
+    public function all(){
+        $data = $this->benefit->all(); 
+        return response()->json(['status' => true, 'msg' => 'all data', 'data' =>  $data], Response::HTTP_OK);
+    }
 }

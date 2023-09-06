@@ -293,7 +293,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container-fluid" },
     [
       _c("BreadCumbs", { attrs: { breadcumbs: this.breadcumbs } }),
       _vm._v(" "),

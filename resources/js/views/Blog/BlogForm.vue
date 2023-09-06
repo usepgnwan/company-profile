@@ -152,11 +152,11 @@ export default {
       formData.append('image', this.jsonData.image);
       formData.append("_token", token);
       if(this.isAdd){
+        let msg = 'Failed add blog';
         this.$axios.post("api/post/", formData)
           .then((response) => {
             this.proses = false;
-            let stat = 'error',
-                msg = 'Failed add blog';
+            let stat = 'error';
                 this.$validation(response.data.msg,this.jsonResp)
                 if(response.data.status){
                   stat = 'success',
@@ -170,12 +170,12 @@ export default {
               this.proses = false;
           });
       }else{
+       let msg = 'Failed Update blog';
         formData.append('_method', 'PATCH');
         this.$axios.post("api/post/" + this.thisId, formData)
           .then((response) => {
             this.proses = false;
-            let stat = 'error',
-                msg = 'Failed Update blog';
+            let stat = 'error';
                 this.$validation(response.data.msg,this.jsonResp)
                 if(response.data.status){
                   stat = 'success',
