@@ -18,7 +18,9 @@ class PostController extends Controller
     }
 
     public function index(Request $request){
-        $posts = $this->post->orderBy('pinned', 'desc')->orderBy('highlight', 'desc')->orderBy($request->sortby, $request->sortbydesc) 
+        $sortby = isset($request->sortby) ? $request->sortby : 'id';
+        $sortbydesc = isset($request->sortby) ? $request->sortbydesc : 'asc';
+        $posts = $this->post->orderBy('pinned', 'desc')->orderBy('highlight', 'desc')->orderBy($sortby, $sortbydesc) 
         ->when($request->q, function($posts) use ($request) { 
             $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%')
                 ->orWhere('body', 'LIKE', '%' . $request->q . '%');

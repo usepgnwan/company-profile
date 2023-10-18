@@ -18,29 +18,44 @@ export default {
   components: {
     Editor,
   },
-  props: ['modelValue', 'inlineEditor'],
+  props: ['modelValue', 'inlineEditor', 'height'],
   data() {
     return {
       content: this.modelValue,
       inlineType: this.inlineEditor,
+      height : this.height,
       editorConfig: {
         // TinyMCE configurations, customize as needed
-        plugins: 'image table preview media paste_block_drop',
-        toolbar: 'undo redo | image | table | preview| media | foto',
+        plugins: 'image table preview media paste_block_drop emoticons',
+        toolbar: 'undo redo | image | table | preview| media | foto | outdent indent | numlist bullist | emoticons',
         images_upload_url :  this.$baseUrl + "/api/post/upload/image",
         paste_data_images: false, // Disable pasting of images
         // images_upload_handler: this.image_upload_handler
-        inline: false
+        inline: false,
+        emoticons_append: {
+          custom_mind_explode: {
+            keywords: ['brain', 'mind', 'explode', 'blown'],
+            char: '🤯'
+          }
+        },
       },
       inlineConfig: {
         menubar: true,
+        min_height: 200,
         inline: true, 
           plugins: [
               "advlist autolink lists link charmap print preview anchor textcolor",
               "searchreplace visualblocks code fullscreen",
-              "insertdatetime table contextmenu paste textcolor"
+              "insertdatetime table contextmenu paste textcolor",
+              "emoticons"
           ],
-          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor"
+          emoticons_append: {
+            custom_mind_explode: {
+              keywords: ['brain', 'mind', 'explode', 'blown'],
+              char: '🤯'
+            }
+          },
+          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor | outdent indent | numlist bullist | emoticons"
         
       }
     };

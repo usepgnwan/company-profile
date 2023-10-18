@@ -161,7 +161,7 @@ export default {
                 if(response.data.status){
                   stat = 'success',
                   msg = 'Success add blog'; 
-                  this.$router.push({ name : "blog"});
+                  this.$router.push({ name : "account/blog"});
                 }  
                 this.$isAlert(this,msg, stat)
           })
@@ -180,7 +180,7 @@ export default {
                 if(response.data.status){
                   stat = 'success',
                   msg = 'Success Update blog'; 
-                  this.$router.push({ name : "blog"});
+                  this.$router.push({ name : "account/blog"});
                 }  
                 this.$isAlert(this,msg, stat)
           })

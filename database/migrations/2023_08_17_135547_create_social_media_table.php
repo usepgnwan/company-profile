@@ -24,6 +24,9 @@ class CreateSocialMediaTable extends Migration
             $table->text('ig')->nullable(); 
             $table->text('fb')->nullable(); 
             $table->text('linkedin')->nullable(); 
+            $table->text('tiktok')->nullable();
+            $table->text('twitter')->nullable();
+            $table->text('youtube')->nullable();
             $table->timestamps();
         });
     }

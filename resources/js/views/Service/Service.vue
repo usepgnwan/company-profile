@@ -112,7 +112,7 @@
           selectpin:0,
           proses : false,
           row: {},
-          isicon:true
+          isicon:false
         }
       },
       methods: {  

@@ -16,11 +16,15 @@
                         </div>
                       </div>
                       <div class="col-12">
-                        <label for="foto" class="form-label">Icon</label>
+                        <label for="foto" class="form-label">Foto</label>
+                        <div v-if="imagePrev" class="pt-1 pb-1" style="position: relative; max-width: 300px;">
+                          <button style="position:absolute;column-rule: none;border: none; right: 0px; margin:5px;" class="badge rounded-pill bg-danger" v-on:click="removeImg($event)"> x </button>
+                          <img :src="imagePrev" alt="" width="300">
+                        </div>
                         <div v-if="jsonData.image" class="pt-1 pb-1" style="position: relative; max-width: 300px;">
                           <i :class="jsonData.image" style="font-size: 130px !important;color:#a6c6f1;"></i>
                         </div>
-                        <input type="text" class="form-control" v-model="jsonData.image"  v-on:click="inputFile()"  accept="image/x-png,image/gif,image/jpeg" id="uploadCaptureInputFile" :class="`${ jsonResp.image ? 'is-invalid' : ''}`">
+                        <input type="file" class="form-control"  v-on:change="inputFile($event)"  accept="image/x-png,image/gif,image/jpeg" id="uploadCaptureInputFile" :class="`${ jsonResp.image ? 'is-invalid' : ''}`">
                         <div class="vinvalid-feedback text-danger" v-if="jsonResp.image">
                             {{ jsonResp.image }}
                         </div>
@@ -152,8 +156,9 @@ export default {
              this.cantReload = false;
         });
     },
-    inputFile() {
-        this.isIcon = true;
+    inputFile(event) {
+      this.jsonData.image = event.target.files[0];
+      this.imagePrev = URL.createObjectURL( this.jsonData.image);
     },
     removeImg(e){
       e.preventDefault();

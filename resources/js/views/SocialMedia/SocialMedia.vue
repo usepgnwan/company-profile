@@ -50,6 +50,13 @@
                             {{ jsonResp.image }}
                         </div>
                       </div>
+                      <div class="col-12">
+                        <label for="title" class="form-label">Youtube</label>
+                        <input type="text" class="form-control" :class="`${ jsonResp.youtube ? 'is-invalid' : ''}`" v-model="jsonData.youtube"  >
+                        <div class="vinvalid-feedback text-danger" v-if="jsonResp.youtube">
+                          {{ jsonResp.youtube }}
+                        </div>
+                      </div>
                       <div class="col-6">
                         <label for="title" class="form-label">Whatsapp</label>
                         <input type="text" class="form-control" :class="`${ jsonResp.wa ? 'is-invalid' : ''}`" v-model="jsonData.wa"  >
@@ -76,6 +83,20 @@
                         <input type="text" class="form-control" :class="`${ jsonResp.linkedin ? 'is-invalid' : ''}`" v-model="jsonData.linkedin"  >
                         <div class="vinvalid-feedback text-danger" v-if="jsonResp.linkedin">
                           {{ jsonResp.linkedin }}
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <label for="title" class="form-label">Twitter</label>
+                        <input type="text" class="form-control" :class="`${ jsonResp.twitter ? 'is-invalid' : ''}`" v-model="jsonData.twitter"  >
+                        <div class="vinvalid-feedback text-danger" v-if="jsonResp.twitter">
+                          {{ jsonResp.twitter }}
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <label for="title" class="form-label">Tiktok</label>
+                        <input type="text" class="form-control" :class="`${ jsonResp.tiktok ? 'is-invalid' : ''}`" v-model="jsonData.tiktok"  >
+                        <div class="vinvalid-feedback text-danger" v-if="jsonResp.tiktok">
+                          {{ jsonResp.tiktok }}
                         </div>
                       </div>
                       <div class="text-end">
@@ -154,6 +175,9 @@ export default {
         fb :"", 
         ig :"", 
         linkedin :"", 
+        twitter :"", 
+        tiktok :"", 
+        youtube :"", 
         image :"", 
       },
       cantReload: true,
@@ -168,6 +192,8 @@ export default {
         fb :"", 
         ig :"", 
         linkedin :"", 
+        twitter :"", 
+        tiktok :"", 
         image :"", 
       },
       proses : false,
@@ -205,6 +231,9 @@ export default {
            this.jsonData.fb = response.data.data.fb;  
            this.jsonData.ig = response.data.data.ig;  
            this.jsonData.linkedin = response.data.data.linkedin;  
+           this.jsonData.twitter = response.data.data.twitter;  
+           this.jsonData.tiktok = response.data.data.tiktok;  
+           this.jsonData.youtube = response.data.data.youtube;  
            this.jsonData.image = response.data.data.image; 
             // console.log(breadcumbs)
         })
@@ -234,6 +263,9 @@ export default {
       formData.append('fb', this.jsonData.fb); 
       formData.append('ig', this.jsonData.ig); 
       formData.append('linkedin', this.jsonData.linkedin); 
+      formData.append('twitter', this.jsonData.twitter); 
+      formData.append('tiktok', this.jsonData.tiktok); 
+      formData.append('youtube', this.jsonData.youtube); 
       formData.append('image', this.jsonData.image); 
       formData.append("_token", token);
         let stat = 'error',

@@ -48,11 +48,11 @@
                     <button class="btn btn-danger btn-sm mt-1" @click="deleteModalButton(row)"><i class="bx bxs-trash"></i></button>
 
                     <span  v-if="row.item.pinned" >
-                        <button @click="buttonUnsetPinned(row, 'Pinned')" v-if="row.item.pinned" class="btn btn-success btn-sm mt-1" v-b-tooltip.hover :title="pinned"><i class="ri-pushpin-2-fill"></i></button><br>
+                        <button @click="buttonUnsetPinned(row, 'Pinned')" v-if="row.item.pinned == 1" class="btn btn-success btn-sm mt-1" v-b-tooltip.hover :title="pinned"><i class="ri-pushpin-2-fill"></i></button><br>
                         <small class="text-danger">Pinned</small>
                     </span>
                     <span v-if="row.item.highlight" >
-                        <button @click="buttonUnsetPinned(row, 'Highlight')" v-if="row.item.highlight" class="btn btn-success btn-sm mt-1" v-b-tooltip.hover :title="highlight"><i class="ri-pushpin-2-fill"></i></button><br>
+                        <button @click="buttonUnsetPinned(row, 'Highlight')" v-if="row.item.highlight == 1" class="btn btn-success btn-sm mt-1" v-b-tooltip.hover :title="highlight"><i class="ri-pushpin-2-fill"></i></button><br>
                         <small class="text-danger">highlight</small>
                     </span>
 

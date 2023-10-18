@@ -12,7 +12,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import axios from 'axios';
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.baseURL = 'http://127.0.0.1:8000';
+axios.defaults.baseURL = 'https://spacedigital.id/';
 import router from './router' //setting vue roter
 import {validationerr, isAlert} from './router/validationerr.js';
 import {onEvent, selectEvent,onscrollEvent} from './custom';
@@ -26,7 +26,7 @@ Vue.component('viewErr', require('./views/404/404View.vue').default);
 Object.defineProperty(Vue.prototype, '$axios', { value: axios });
 Object.defineProperty(Vue.prototype, '$validation', { value: validationerr });
 Object.defineProperty(Vue.prototype, '$isAlert', { value: isAlert });
-Object.defineProperty(Vue.prototype, '$baseUrl', { value: 'http://127.0.0.1:8000' });
+Object.defineProperty(Vue.prototype, '$baseUrl', { value: 'https://spacedigital.id/' });
 Object.defineProperty(Vue.prototype, '$onEvent', { value: onEvent });
 Object.defineProperty(Vue.prototype, '$selectEvent', { value: selectEvent });
 Object.defineProperty(Vue.prototype, '$onscrollEvent', { value: onscrollEvent });

@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('body');
+            $table->text('body')->charset('utf8mb4')->collation('utf8mb4_unicode_ci')->nullable();
             $table->text('image')->nullable(); 
             $table->boolean('pinned')->default(false); 
             $table->boolean('highlight')->default(false); 

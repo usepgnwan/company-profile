@@ -64,18 +64,31 @@ class ServiceController extends Controller
         $valid = Validator::make($request->all(), [
             'title' => 'required|max:225',
             'body' => 'required',
-            'image' => 'required',
         ]);
         if ($valid->fails()) {
             // return response()->json(['status' => false, 'msg' => $valid->getMessageBag()->toArray()]);
             return response()->json(['status' => false, 'msg' => $valid->errors()]);
         }
-         
+        
+        if ($request->hasFile('image') && $request->image != '') {
+            $image = $request->file('image');
+            $allowedfileExtension = ['jpg', 'png', 'jpeg'];
+            $extension = $image->getClientOriginalExtension();
+            $check = in_array($extension, $allowedfileExtension);
+            if ($check) {
+                $imgName = $image->hashName();
+                $image->move('uploads/image/', $imgName);
+                $imgName = asset('uploads/image/'.$imgName);
+            }else{
+                return response()->json(['status' => false, 'msg' => ["image" => ["file not allowed."]]]);
+            }
+        }
+
         $data = [
             'title' => $request->title,
             'body' => $request->body, 
             'published_at' => now(), 
-            'image' => $request->image,
+            'image' => $imgName,
             'pinned' =>0, 
         ];
         // dump($data);
@@ -98,7 +111,6 @@ class ServiceController extends Controller
         $valid = Validator::make($request->all(), [
             'title' => 'required|max:225',
             'body' => 'required',
-            'image' => 'required',
         ]);
         if ($valid->fails()) {
             // return response()->json(['status' => false, 'msg' => $valid->getMessageBag()->toArray()]);
@@ -107,10 +119,29 @@ class ServiceController extends Controller
 
         $check = $this->service->find($id);  
         if ($check) { 
+            $imgName = $check->image;
+            if ($request->hasFile('image') && $request->image != '') {
+                $image = $request->file('image');
+                $allowedfileExtension = ['jpg', 'png', 'jpeg'];
+                $extension = $image->getClientOriginalExtension();
+                $checkEx = in_array($extension, $allowedfileExtension);
+                if ($checkEx) {
+                    $path_old = public_path('uploads/image/') . $check->image;
+                    if (file_exists($path_old) && $check->image != null) {
+                        unlink($path_old);
+                    }
+                    $imgName = $image->hashName();
+                    $image->move('uploads/image/', $imgName); 
+                    $imgName =asset('uploads/image/'.$imgName); 
+                }else{
+                    return response()->json(['status' => false, 'msg' => ["image" => ["file not allowed."]]]);
+                }
+            }
+
             $data = [
                 'title' => $request->title,
                 'body' => $request->body, 
-                'image' => $request->image,
+                'image' => $imgName,
             ];
             $check->fill($data)->save(); 
             

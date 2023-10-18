@@ -72,7 +72,7 @@ export default {
   
 methods: {
         getSelect(el, all = false){
-            console.log(el)
+            // console.log(el)
             el = el.trim()
             if (all) {
                 return [...document.querySelectorAll(el)]

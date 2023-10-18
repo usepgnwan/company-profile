@@ -3,7 +3,7 @@
   <main>
     
   <!-- ======= Header ======= -->
-  <TopDashboard />
+  <TopDashboard :contacts="this.contacts" />
   <!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
@@ -30,10 +30,18 @@ import NavDashboard from './NavDashboard.vue';
 import TopDashboard from './TopDashboard.vue';
 import FooterDashboard from './FooterDashboard.vue';
 export default {
+    data(){
+      return{
+        contacts : []
+      }
+    },
     components:{
       NavDashboard,
       TopDashboard,
       FooterDashboard
+    },
+    mounted(){
+      this.$axios.get('/api/social_media').then((response) => {this.contacts = response.data;}).catch ((err) => {console.log(err)});
     }
 }
 </script>

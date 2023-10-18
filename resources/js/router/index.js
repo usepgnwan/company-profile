@@ -31,8 +31,26 @@ const routes = [
                 {
                   path: '/',
                   name : "/",
-                  component: () => page('Front/Front'),
-                },
+                  component: () => import (`../views/Front/Front.vue`),
+                  children:[
+                    {
+                        path: '/',
+                        name: 'front',
+                        component: () => page('Front/Main'),
+                    },
+                    ,
+                    {
+                        path: '/blogs',
+                        name : "blogs",
+                        component: () => page('Front/Blogs'),
+                    },
+                    {
+                        path: '/blog/:id?',
+                        name : "blog",
+                        component: () => page('Front/Blog'),
+                    },
+                  ]
+                }, 
                 {
                   path: '/login',
                   name: 'login',
@@ -55,12 +73,12 @@ const routes = [
                       },
                       {
                           path: 'blog',
-                          name: 'blog',
+                          name: 'account/blog',
                           component: () => page('Blog/BlogView'),
                       },
                       {
                           path: 'blog/form/:id?',
-                          name: 'blog/form',
+                          name: 'account/blog/form',
                           component: () => page('Blog/BlogForm'),
                       },
                       {

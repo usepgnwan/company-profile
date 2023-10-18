@@ -46,10 +46,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      contacts: []
+    };
+  },
   components: {
     NavDashboard: _NavDashboard_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     TopDashboard: _TopDashboard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     FooterDashboard: _FooterDashboard_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  mounted: function mounted() {
+    var _this = this;
+    this.$axios.get('/api/social_media').then(function (response) {
+      _this.contacts = response.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
   }
 });
 
@@ -181,7 +194,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   methods: {
     getSelect: function getSelect(el) {
       var all = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      console.log(el);
+      // console.log(el)
       el = el.trim();
       if (all) {
         return _toConsumableArray(document.querySelectorAll(el));
@@ -473,9 +486,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'TopDashboard'
+  name: 'TopDashboard',
+  props: ["contacts"]
 });
 
 /***/ }),
@@ -11984,7 +11999,7 @@ var render = function () {
   return _c(
     "main",
     [
-      _c("TopDashboard"),
+      _c("TopDashboard", { attrs: { contacts: this.contacts } }),
       _vm._v(" "),
       _c("NavDashboard"),
       _vm._v(" "),
@@ -12288,425 +12303,405 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "header",
+    {
+      staticClass: "header fixed-top d-flex align-items-center",
+      attrs: { id: "header" },
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "d-flex align-items-center justify-content-between" },
+        [
+          _vm.contacts.data
+            ? _c(
+                "a",
+                {
+                  staticClass: "logo d-flex align-items-center",
+                  attrs: { href: "/" },
+                },
+                [
+                  _c("img", {
+                    attrs: { src: _vm.contacts.data.image, alt: "" },
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "d-none d-lg-block" }, [
+                    _vm._v(_vm._s(_vm.contacts.data.name) + " "),
+                  ]),
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("i", { staticClass: "bi bi-list toggle-sidebar-btn" }),
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "header",
-      {
-        staticClass: "header fixed-top d-flex align-items-center",
-        attrs: { id: "header" },
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "d-flex align-items-center justify-content-between" },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "logo d-flex align-items-center",
-                attrs: { href: "index.html" },
-              },
-              [
-                _c("img", { attrs: { src: "assets/img/logo.png", alt: "" } }),
-                _vm._v(" "),
-                _c("span", { staticClass: "d-none d-lg-block" }, [
-                  _vm._v("NiceAdmin"),
-                ]),
-              ]
-            ),
-            _vm._v(" "),
-            _c("i", { staticClass: "bi bi-list toggle-sidebar-btn" }),
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "search-bar d-none" }, [
+    return _c("div", { staticClass: "search-bar d-none" }, [
+      _c(
+        "form",
+        {
+          staticClass: "search-form d-flex align-items-center",
+          attrs: { method: "POST", action: "#" },
+        },
+        [
+          _c("input", {
+            attrs: {
+              type: "text",
+              name: "query",
+              placeholder: "Search",
+              title: "Enter search keyword",
+            },
+          }),
+          _vm._v(" "),
+          _c("button", { attrs: { type: "submit", title: "Search" } }, [
+            _c("i", { staticClass: "bi bi-search" }),
+          ]),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("nav", { staticClass: "header-nav ms-auto" }, [
+      _c("ul", { staticClass: "d-flex align-items-center" }, [
+        _c("li", { staticClass: "nav-item d-block d-lg-none" }, [
           _c(
-            "form",
+            "a",
             {
-              staticClass: "search-form d-flex align-items-center",
-              attrs: { method: "POST", action: "#" },
+              staticClass: "nav-link nav-icon search-bar-toggle",
+              attrs: { href: "#" },
+            },
+            [_c("i", { staticClass: "bi bi-search" })]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item dropdown" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link nav-icon",
+              attrs: { href: "#", "data-bs-toggle": "dropdown" },
             },
             [
-              _c("input", {
-                attrs: {
-                  type: "text",
-                  name: "query",
-                  placeholder: "Search",
-                  title: "Enter search keyword",
-                },
-              }),
+              _c("i", { staticClass: "bi bi-bell" }),
               _vm._v(" "),
-              _c("button", { attrs: { type: "submit", title: "Search" } }, [
-                _c("i", { staticClass: "bi bi-search" }),
+              _c("span", { staticClass: "badge bg-primary badge-number" }, [
+                _vm._v("4"),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              staticClass:
+                "dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications",
+            },
+            [
+              _c("li", { staticClass: "dropdown-header" }, [
+                _vm._v(
+                  "\r\n              You have 4 new notifications\r\n              "
+                ),
+                _c("a", { attrs: { href: "#" } }, [
+                  _c(
+                    "span",
+                    { staticClass: "badge rounded-pill bg-primary p-2 ms-2" },
+                    [_vm._v("View all")]
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "notification-item" }, [
+                _c("i", {
+                  staticClass: "bi bi-exclamation-circle text-warning",
+                }),
+                _vm._v(" "),
+                _c("div", [
+                  _c("h4", [_vm._v("Lorem Ipsum")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Quae dolorem earum veritatis oditseno")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("30 min. ago")]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "notification-item" }, [
+                _c("i", { staticClass: "bi bi-x-circle text-danger" }),
+                _vm._v(" "),
+                _c("div", [
+                  _c("h4", [_vm._v("Atque rerum nesciunt")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Quae dolorem earum veritatis oditseno")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("1 hr. ago")]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "notification-item" }, [
+                _c("i", { staticClass: "bi bi-check-circle text-success" }),
+                _vm._v(" "),
+                _c("div", [
+                  _c("h4", [_vm._v("Sit rerum fuga")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Quae dolorem earum veritatis oditseno")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("2 hrs. ago")]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "notification-item" }, [
+                _c("i", { staticClass: "bi bi-info-circle text-primary" }),
+                _vm._v(" "),
+                _c("div", [
+                  _c("h4", [_vm._v("Dicta reprehenderit")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Quae dolorem earum veritatis oditseno")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("4 hrs. ago")]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "dropdown-footer" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v("Show all notifications"),
+                ]),
               ]),
             ]
           ),
         ]),
         _vm._v(" "),
-        _c("nav", { staticClass: "header-nav ms-auto" }, [
-          _c("ul", { staticClass: "d-flex align-items-center" }, [
-            _c("li", { staticClass: "nav-item d-block d-lg-none" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-icon search-bar-toggle",
-                  attrs: { href: "#" },
-                },
-                [_c("i", { staticClass: "bi bi-search" })]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item dropdown" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-icon",
-                  attrs: { href: "#", "data-bs-toggle": "dropdown" },
-                },
-                [
-                  _c("i", { staticClass: "bi bi-bell" }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "badge bg-primary badge-number" }, [
-                    _vm._v("4"),
-                  ]),
-                ]
-              ),
+        _c("li", { staticClass: "nav-item dropdown d-none" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link nav-icon",
+              attrs: { href: "#", "data-bs-toggle": "dropdown" },
+            },
+            [
+              _c("i", { staticClass: "bi bi-chat-left-text" }),
               _vm._v(" "),
-              _c(
-                "ul",
-                {
-                  staticClass:
-                    "dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications",
-                },
-                [
-                  _c("li", { staticClass: "dropdown-header" }, [
-                    _vm._v(
-                      "\r\n              You have 4 new notifications\r\n              "
-                    ),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "badge rounded-pill bg-primary p-2 ms-2",
-                        },
-                        [_vm._v("View all")]
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "notification-item" }, [
-                    _c("i", {
-                      staticClass: "bi bi-exclamation-circle text-warning",
-                    }),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("h4", [_vm._v("Lorem Ipsum")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v("Quae dolorem earum veritatis oditseno"),
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("30 min. ago")]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "notification-item" }, [
-                    _c("i", { staticClass: "bi bi-x-circle text-danger" }),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("h4", [_vm._v("Atque rerum nesciunt")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v("Quae dolorem earum veritatis oditseno"),
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("1 hr. ago")]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "notification-item" }, [
-                    _c("i", { staticClass: "bi bi-check-circle text-success" }),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("h4", [_vm._v("Sit rerum fuga")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v("Quae dolorem earum veritatis oditseno"),
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("2 hrs. ago")]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "notification-item" }, [
-                    _c("i", { staticClass: "bi bi-info-circle text-primary" }),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("h4", [_vm._v("Dicta reprehenderit")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v("Quae dolorem earum veritatis oditseno"),
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("4 hrs. ago")]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "dropdown-footer" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Show all notifications"),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item dropdown d-none" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-icon",
-                  attrs: { href: "#", "data-bs-toggle": "dropdown" },
-                },
-                [
-                  _c("i", { staticClass: "bi bi-chat-left-text" }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "badge bg-success badge-number" }, [
-                    _vm._v("3"),
-                  ]),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "ul",
-                {
-                  staticClass:
-                    "dropdown-menu dropdown-menu-end dropdown-menu-arrow messages",
-                },
-                [
-                  _c("li", { staticClass: "dropdown-header" }, [
-                    _vm._v(
-                      "\r\n              You have 3 new messages\r\n              "
-                    ),
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "badge rounded-pill bg-primary p-2 ms-2",
-                        },
-                        [_vm._v("View all")]
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "message-item" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("img", {
-                        staticClass: "rounded-circle",
-                        attrs: { src: "assets/img/messages-1.jpg", alt: "" },
-                      }),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c("h4", [_vm._v("Maria Hudson")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Velit asperiores et ducimus soluta repudiandae labore officia est ut..."
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("4 hrs. ago")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "message-item" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("img", {
-                        staticClass: "rounded-circle",
-                        attrs: { src: "assets/img/messages-2.jpg", alt: "" },
-                      }),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c("h4", [_vm._v("Anna Nelson")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Velit asperiores et ducimus soluta repudiandae labore officia est ut..."
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("6 hrs. ago")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "message-item" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("img", {
-                        staticClass: "rounded-circle",
-                        attrs: { src: "assets/img/messages-3.jpg", alt: "" },
-                      }),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c("h4", [_vm._v("David Muldon")]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Velit asperiores et ducimus soluta repudiandae labore officia est ut..."
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [_vm._v("8 hrs. ago")]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "dropdown-footer" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v("Show all messages"),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item dropdown pe-3" }, [
-              _c(
-                "a",
-                {
-                  staticClass:
-                    "nav-link nav-profile d-flex align-items-center pe-0",
-                  attrs: { href: "#", "data-bs-toggle": "dropdown" },
-                },
-                [
-                  _c("img", {
-                    staticClass: "rounded-circle",
-                    attrs: {
-                      src: "/assets/img/profile-img.jpg",
-                      alt: "Profile",
-                    },
-                  }),
-                  _vm._v(" "),
+              _c("span", { staticClass: "badge bg-success badge-number" }, [
+                _vm._v("3"),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              staticClass:
+                "dropdown-menu dropdown-menu-end dropdown-menu-arrow messages",
+            },
+            [
+              _c("li", { staticClass: "dropdown-header" }, [
+                _vm._v(
+                  "\r\n              You have 3 new messages\r\n              "
+                ),
+                _c("a", { attrs: { href: "#" } }, [
                   _c(
                     "span",
-                    { staticClass: "d-none d-md-block dropdown-toggle ps-2" },
-                    [_vm._v("K. Anderson")]
+                    { staticClass: "badge rounded-pill bg-primary p-2 ms-2" },
+                    [_vm._v("View all")]
                   ),
-                ]
-              ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "message-item" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("div", [
+                    _c("h4", [_vm._v("Maria Hudson")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "Velit asperiores et ducimus soluta repudiandae labore officia est ut..."
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("4 hrs. ago")]),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "message-item" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("div", [
+                    _c("h4", [_vm._v("Anna Nelson")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "Velit asperiores et ducimus soluta repudiandae labore officia est ut..."
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("6 hrs. ago")]),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "message-item" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("div", [
+                    _c("h4", [_vm._v("David Muldon")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "Velit asperiores et ducimus soluta repudiandae labore officia est ut..."
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("8 hrs. ago")]),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", { staticClass: "dropdown-footer" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v("Show all messages"),
+                ]),
+              ]),
+            ]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item dropdown pe-3" }, [
+          _c(
+            "a",
+            {
+              staticClass:
+                "nav-link nav-profile d-flex align-items-center pe-0",
+              attrs: { href: "#", "data-bs-toggle": "dropdown" },
+            },
+            [
+              _c("img", {
+                staticClass: "rounded-circle",
+                attrs: { src: "/assets/img/profile-img.jpg", alt: "Profile" },
+              }),
               _vm._v(" "),
               _c(
-                "ul",
-                {
-                  staticClass:
-                    "dropdown-menu dropdown-menu-end dropdown-menu-arrow profile",
-                },
-                [
-                  _c("li", { staticClass: "dropdown-header" }, [
-                    _c("h6", [_vm._v("Kevin Anderson")]),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Web Designer")]),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item d-flex align-items-center",
-                        attrs: { href: "users-profile.html" },
-                      },
-                      [
-                        _c("i", { staticClass: "bi bi-person" }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("My Profile")]),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item d-flex align-items-center",
-                        attrs: { href: "users-profile.html" },
-                      },
-                      [
-                        _c("i", { staticClass: "bi bi-gear" }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Account Settings")]),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item d-flex align-items-center",
-                        attrs: { href: "pages-faq.html" },
-                      },
-                      [
-                        _c("i", { staticClass: "bi bi-question-circle" }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Need Help?")]),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
-                  _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item d-flex align-items-center",
-                        attrs: { href: "#" },
-                      },
-                      [
-                        _c("i", { staticClass: "bi bi-box-arrow-right" }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Sign Out")]),
-                      ]
-                    ),
-                  ]),
-                ]
+                "span",
+                { staticClass: "d-none d-md-block dropdown-toggle ps-2" },
+                [_vm._v("K. Anderson")]
               ),
-            ]),
-          ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              staticClass:
+                "dropdown-menu dropdown-menu-end dropdown-menu-arrow profile",
+            },
+            [
+              _c("li", { staticClass: "dropdown-header" }, [
+                _c("h6", [_vm._v("Kevin Anderson")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Web Designer")]),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item d-flex align-items-center",
+                    attrs: { href: "users-profile.html" },
+                  },
+                  [
+                    _c("i", { staticClass: "bi bi-person" }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("My Profile")]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item d-flex align-items-center",
+                    attrs: { href: "users-profile.html" },
+                  },
+                  [
+                    _c("i", { staticClass: "bi bi-gear" }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Account Settings")]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item d-flex align-items-center",
+                    attrs: { href: "pages-faq.html" },
+                  },
+                  [
+                    _c("i", { staticClass: "bi bi-question-circle" }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Need Help?")]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("li", [_c("hr", { staticClass: "dropdown-divider" })]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item d-flex align-items-center",
+                    attrs: { href: "#" },
+                  },
+                  [
+                    _c("i", { staticClass: "bi bi-box-arrow-right" }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("Sign Out")]),
+                  ]
+                ),
+              ]),
+            ]
+          ),
         ]),
-      ]
-    )
+      ]),
+    ])
   },
 ]
 render._withStripped = true

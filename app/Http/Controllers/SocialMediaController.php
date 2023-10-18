@@ -15,7 +15,6 @@ class SocialMediaController extends Controller
     }
     public function index(){
         $social_media = $this->social_media->where('id', '1')->first();
-
         return response()->json(['status' => 'success', 'data' => $social_media]);
     }
 public function store(Request $request){
@@ -60,7 +59,9 @@ public function store(Request $request){
                 'wa' => $request->wa,
                 'email' => $request->email,
                 'fb' => $request->fb,
-                'ig' => $request->ig,
+                'youtube' => $request->youtube,
+                'tiktok' => $request->tiktok,
+                'twitter' => $request->twitter,
                 'linkedin' => $request->linkedin,
                 'image' => $imgName, 
             ];

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\IconController;
 use App\Http\Controllers\PostController;
@@ -62,4 +63,7 @@ Route::resource('team', TeamController::class);
 Route::put('team/unset/{id}', [TeamController::class, "unset_pinned"]);
 Route::put('team/pinned/{id}/{type}', [TeamController::class, "pinned"]);
 
+
 Route::resource('social_media', SocialMediaController::class);  
+Route::resource('company', CompanyController::class);  
+Route::post('company/patch', [CompanyController::class, "edit"]);
