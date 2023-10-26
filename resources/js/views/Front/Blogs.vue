@@ -41,7 +41,7 @@
                                 <span class="spinner-grow text-primary" style="width: 50px; height: 50px;"></span>
                             </div>  
                             <div class="d-flex justify-content-center pt-2 px-3 text-white" v-else>
-                                <button v-if="loadmore" @click="loadData(page, per_page)" class="btn btn-primary">load more</button>
+                                <button v-if="loadmore" @click="loadData(page, per_page)" class="btn btn-primary"><span class="bi bi-arrow-repeat"></span>&nbsp;load more</button>
                             </div> 
                         </div>
                     </div>

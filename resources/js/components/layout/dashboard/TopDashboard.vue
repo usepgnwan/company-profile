@@ -19,13 +19,13 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
+        <li class="nav-item d-block d-lg-none d-none">
           <a class="nav-link nav-icon search-bar-toggle " href="#">
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown d-none">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
@@ -170,19 +170,19 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ this.name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{ this.name }}</h6>
+              <!-- <span>Web Designer</span> -->
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <!-- <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
@@ -210,10 +210,10 @@
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li> -->
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" @click="_logout($event)">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -228,10 +228,34 @@
 </template>
 
 <script>
+import { mapGetters,  mapActions } from 'vuex'
 export default {
  name: 'TopDashboard',
- 
- props :["contacts"]
+ data(){
+  return{
+    name : localStorage.getItem('name')
+  } 
+ },
+ props :["contacts"],
+ computed: {
+    ...mapGetters(['isAuth']),
+  },
+ methods:{
+  ...mapActions('auth', ['logout']),
+  _logout : async function(e){
+    // e.preventDefault();
+    try {
+      let resp = await this.logout();
+      console.log(resp.data.status)
+      if(resp.data.status){ 
+        this.$router.replace({ name: 'login' })
+      } 
+    } catch (e) {
+      console.log(e)
+    }
+   
+  }
+ }
 }
 </script>
 

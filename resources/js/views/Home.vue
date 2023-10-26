@@ -5,7 +5,7 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body text-center p-4">
-             Hello Admin
+             Hello {{ name }}
           </div>
         </div>
       </div>
@@ -28,7 +28,8 @@ export default {
                     status : true
                 } 
                 ]
-            }
+        },
+        name : localStorage.getItem('name')
     }
   },
   components:{

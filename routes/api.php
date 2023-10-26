@@ -12,7 +12,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimoniController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\ApiUserLogin;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +26,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// login user
+Route::prefix('auth')->group(function(){
+    Route::post('/login', [ApiUserLogin::class,'login']); 
+    Route::post('/logout', [ApiUserLogin::class,'logout']); 
 });
 
 Route::resource('post', PostController::class);

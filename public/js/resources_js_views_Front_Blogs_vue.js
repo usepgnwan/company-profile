@@ -400,7 +400,13 @@ var render = function () {
                                                     },
                                                   },
                                                 },
-                                                [_vm._v("load more")]
+                                                [
+                                                  _c("span", {
+                                                    staticClass:
+                                                      "bi bi-arrow-repeat",
+                                                  }),
+                                                  _vm._v(" load more"),
+                                                ]
                                               )
                                             : _vm._e(),
                                         ]

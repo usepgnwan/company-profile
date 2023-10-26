@@ -11,6 +11,7 @@ import 'vue-toast-notification/dist/theme-bootstrap.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
+import store from '../store'
 
 Vue.use(VueSweetalert2);
 Vue.use(BootstrapVue) 
@@ -54,12 +55,14 @@ const routes = [
                 {
                   path: '/login',
                   name: 'login',
+                  meta: { requiresGuest: true },
                   component: () =>
                       import (`../components/layout/login/Loginlayout.vue`)
                 },
                 {
                   path: '/account',
                   name: 'account',
+                  meta: { needAuth: true },
                   component: () =>  import (`../components/layout/dashboard/DashboardLayout.vue`),
                   children: [{
                           path: 'dashboard',
@@ -160,7 +163,32 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.needAuth)) {
+        let isAuth = store.getters.isAuth
+        if(!isAuth) {
+            next({ name: 'login' })
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
 
+    if (to.matched.some(record => record.meta.requiresGuest)) {
+        // This route should only be accessible by unauthenticated users
+        if (store.getters.isAuth) {
+          // User is authenticated, redirect them to the home page or another route
+          next({ name: 'dashboard' })
+        } else {
+          // User is not authenticated, allow access to the route
+          next();
+        }
+      } else {
+        // This route does not require guest access, allow access
+        next();
+      }
+})
 router.beforeResolve((to, from, next) => {
   // If this isn't an initial page load.
   if (to.name) {
